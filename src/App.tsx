@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react"
+const PORTFOLIO_PASSWORD = "5811"
 import {
   motion,
   useScroll,
@@ -1084,9 +1085,98 @@ function Chatbot() {
 }
 
 // ── Root ──────────────────────────────────────────────────────────────────────
+function PasswordGate({ children }: { children: React.ReactNode }) {
+  const [authenticated, setAuthenticated] = useState(() => {
+    return sessionStorage.getItem("portfolio_authenticated") === "true"
+  })
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (password === PORTFOLIO_PASSWORD) {
+      sessionStorage.setItem("portfolio_authenticated", "true")
+      setAuthenticated(true)
+      setError("")
+    } else {
+      setError("パスワードが正しくありません。")
+      setPassword("")
+    }
+  }
+
+  if (authenticated) {
+    return <>{children}</>
+  }
+
+  return (
+    <div className="min-h-screen bg-[#faf9f7] flex items-center justify-center px-6">
+      <div className="w-full max-w-md">
+
+        <div className="text-center mb-10">
+          <p className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-5">
+            Portfolio
+          </p>
+
+          <h1 className="font-['Fraunces'] text-4xl md:text-5xl font-[300] text-[#1a1a2e]">
+            KATSUNOSHIN
+            <br />
+            <em className="italic text-[#c0392b]">
+              UTSUMI
+            </em>
+          </h1>
+
+          <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] mt-6">
+            閲覧にはパスワードが必要です。
+          </p>
+        </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="border-t border-[#1a1a2e]/10 pt-8"
+        >
+          <label className="block text-xs font-['Inter'] text-[#8a8680] mb-3">
+            PASSWORD
+          </label>
+
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value)
+              setError("")
+            }}
+            placeholder="パスワードを入力"
+            autoFocus
+            className="w-full border border-[#1a1a2e]/15 bg-transparent px-5 py-4 text-sm font-['Inter'] text-[#1a1a2e] placeholder:text-[#8a8680]/60 outline-none focus:border-[#c0392b] transition-colors"
+          />
+
+          {error && (
+            <p className="text-xs text-[#c0392b] mt-3">
+              {error}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            className="w-full mt-5 bg-[#1a1a2e] text-[#faf9f7] py-4 text-sm font-['Inter'] tracking-wide hover:bg-[#c0392b] transition-colors duration-300"
+          >
+            ENTER
+          </button>
+        </form>
+
+        <p className="text-center text-xs text-[#8a8680]/60 mt-10 font-['Inter']">
+          KATSUNOSHIN UTSUMI · 2026
+        </p>
+
+      </div>
+    </div>
+  )
+}
+
 export default function App() {
   return (
-    <>
+    <PasswordGate>
       <Cursor />
       <Nav />
       <main>
@@ -1097,6 +1187,6 @@ export default function App() {
         <Contact />
       </main>
       <Chatbot />
-    </>
+    </PasswordGate>
   )
 }
