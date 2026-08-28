@@ -635,7 +635,7 @@ function SkillBar({
   return (
     <div ref={ref} className="mb-6">
       <div className="flex justify-between mb-2">
-        <span className="text-sm font-['Inter'] text-[#111111]">{label}</span>
+        <span className="text-sm font-['Inter'] text-[#8a8680]">{label}</span>
         <span className="text-xs font-['Inter'] text-[#8a8680]">{pct}%</span>
       </div>
       <div className="h-px bg-[#1a1a2e]/10 relative overflow-hidden">
