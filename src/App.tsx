@@ -461,15 +461,15 @@ function Profile() {
 // ── Works ─────────────────────────────────────────────────────────────────────
 const works = [
   {
-    title: "ホテリエビジョン",
-    category: "HP制作",
+    title: "ホテリエ",
+    category: "HP制作/運営実績",
     url: "https://hotel.inc/hoteliervison/",
     color: "#0f1923",
-    img: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&h=600&fit=crop&auto=format",
+    img: "/images/works/hotel.jpg",
   },
   {
     title: "コビタススペース",
-    category: "HP制作",
+     category: "HP制作/運営実績",
     url: "https://cobitas.com/",
     color: "#1a2e1a",
     img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop&auto=format",
@@ -497,7 +497,7 @@ const works = [
   },
   {
     title: "東邦ハウジング株式会社",
-    category: "運営実績",
+     category: "HP制作/運営実績",
     url: "https://www.toho-housing.co.jp/",
     color: "#162030",
     img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&auto=format",
