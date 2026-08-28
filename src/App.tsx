@@ -514,7 +514,7 @@ function WorkCard({ work, index }: { work: typeof works[0] index: number }) {
         onHoverEnd={() => setHovered(false)}
         data-hover
       >
-        <div className="relative overflow-hidden bg-[#e8e5df] aspect-[4/3]">
+        <div className="relative overflow-hidden bg-[#e8e5df] aspect-[2/1]">
           <motion.img
             src={work.img}
             alt={work.title}
