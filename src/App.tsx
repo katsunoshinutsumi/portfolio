@@ -459,6 +459,8 @@ function Profile() {
 }
 
 // ── Works ─────────────────────────────────────────────────────────────────────
+// ── Works ─────────────────────────────────────────────────────────────────────
+
 const works = [
   {
     title: "ホテリエ",
@@ -503,18 +505,148 @@ const works = [
     img: "/images/works/toho.jpg",
   },
   {
-    title: "火の国文龍",
+    title: "株式会社文流",
     category: "HP制作/運営実績",
     url: "https://www.bunryu.com/",
     color: "#1a1a1a",
     img: "/images/works/bunryu.jpg",
   },
   {
-    title: "ゾンクホテル",
+    title: "ZONK",
     category: "HP制作/運営実績",
     url: "https://zonk.jp/",
     color: "#111111",
     img: "/images/works/zonk.jpg",
+  },
+]
+
+const graphicWorks = [
+  {
+    title: "写真加工",
+    description:
+      "中古物件、テナント物件の写真を加工。PhotoshopのAI生成機能を活用し、作業効率を向上。",
+    img: "https://static.wixstatic.com/media/cd63c9_103ac96cc065422681d9b8da931e9a6e~mv2.jpg",
+  },
+  {
+    title: "中古物件",
+    description:
+      "築年数の古い物件の外観をイラスト風に加工。チラシをきっかけに契約につながった制作物。",
+    img: "https://static.wixstatic.com/media/cd63c9_4392a8a62ced4e2fb8140bb770f83de7~mv2.jpg",
+  },
+  {
+    title: "中古物件2",
+    description: "築年数の古い物件を加工したチラシ制作。",
+    img: "https://static.wixstatic.com/media/cd63c9_7196a1fb27d242d7a7e29f26a3e9e3b5~mv2.jpg",
+  },
+  {
+    title: "マンションパンフレット1",
+    description:
+      "マンションパンフレットの表紙。青空のパースを夜のパースへ加工し、ライトを直接描画。",
+    img: "https://static.wixstatic.com/media/cd63c9_17c4d5bf2a5f49178eb8967df3dc717e~mv2.jpg",
+  },
+  {
+    title: "マンションパンフレット2",
+    description: "高級感を重視した見開きデザイン。",
+    img: "https://static.wixstatic.com/media/cd63c9_6fd6a62e6faf45b883e81679449ac1b2~mv2.jpg",
+  },
+  {
+    title: "マンションパンフレット3",
+    description: "ロケーションを分かりやすく伝えるページ。",
+    img: "https://static.wixstatic.com/media/cd63c9_f41b9a1243874ca79db9f7a4aadaf55d~mv2.jpg",
+  },
+  {
+    title: "マンションパンフレット4",
+    description: "写真を活用したパンフレットページ。",
+    img: "https://static.wixstatic.com/media/cd63c9_58a2db1e1ac2440bab8ea0f05d9085fa~mv2.jpg",
+  },
+  {
+    title: "不動産パンフレット 2021",
+    description:
+      "グループ会社から依頼を受けて制作したチラシ。家族や車の写真は合成写真を使用。",
+    img: "https://static.wixstatic.com/media/cd63c9_70edb0126a5541398d8eedf2f39204f4~mv2.jpg",
+  },
+  {
+    title: "白黒チラシ",
+    description:
+      "2色のみで制作。見やすさを重視し、写真にもAI生成を活用。",
+    img: "https://static.wixstatic.com/media/cd63c9_6f9e2edc3b524bbbb527c32f964c9072~mv2.jpg",
+  },
+  {
+    title: "サンプルチラシ1",
+    description: "質感のあるデザインを重視して制作。",
+    img: "https://static.wixstatic.com/media/cd63c9_7708b6c8798842fa98b12a74f3d3f9cf~mv2.jpg",
+  },
+  {
+    title: "サンプルチラシ2",
+    description:
+      "パースをPhotoshopで水彩画風に加工し、それに合わせた色調を設計。",
+    img: "https://static.wixstatic.com/media/cd63c9_f564206bdc724fe8be90669494eaae7f~mv2.jpg",
+  },
+  {
+    title: "唐揚げ屋チラシ1",
+    description: "アメリカンなイメージで制作。キャラクターは手書き。",
+    img: "https://static.wixstatic.com/media/cd63c9_83ec446b65c3403c8c2d551e3debcfd6~mv2.jpg",
+  },
+  {
+    title: "唐揚げ屋チラシ2",
+    description:
+      "3D素材やAI生成を活用し、パロディ要素を取り入れて制作。",
+    img: "https://static.wixstatic.com/media/cd63c9_6dd6931cf7e64e7299b9bef8c730a18e~mv2.jpg",
+  },
+  {
+    title: "不動産パンフレット 2022",
+    description:
+      "全24ページの販売主向けパンフレット。福岡の街と円形グラデーションを合成。",
+    img: "https://static.wixstatic.com/media/cd63c9_02357b5000044862803c5a68d92c0005~mv2.jpg",
+  },
+  {
+    title: "ネットカフェ広告",
+    description:
+      "カキフライの商品化に合わせて制作。素材を合成してメインビジュアルを制作。",
+    img: "https://static.wixstatic.com/media/cd63c9_eccb07a30dee4a4aa957803a8a42e372~mv2.jpg",
+  },
+  {
+    title: "求人タペストリー",
+    description: "ネットカフェのアルバイト募集広告案。",
+    img: "https://static.wixstatic.com/media/cd63c9_6e317585a95845249a55cc3776f6d6bc~mv2.jpg",
+  },
+  {
+    title: "ネットカフェポスター",
+    description:
+      "Webサイトの素材を利用し、Photoshopでアングルなどを調整して制作。",
+    img: "https://static.wixstatic.com/media/cd63c9_dbe7b6e24d1546919653fff62ab2ad5a~mv2.png",
+  },
+  {
+    title: "会社案内",
+    description: "会社のブランドカラーを崩さないことを重視して制作。",
+    img: "https://static.wixstatic.com/media/cd63c9_8088c98750324996b3b8f49b5e82e977~mv2.jpg",
+  },
+  {
+    title: "年賀状挿絵",
+    description: "会社の年賀状に使用したイラスト。",
+    img: "https://static.wixstatic.com/media/cd63c9_958b95520f804e08bb8f9e2d0caf9e77~mv2.png",
+  },
+  {
+    title: "ネットカフェ挿絵",
+    description: "ネットカフェで使用したイラスト。",
+    img: "https://static.wixstatic.com/media/cd63c9_38828326c64647cf9c8cfa17875b06c6~mv2.png",
+  },
+  {
+    title: "フリーランス",
+    description: "フリーランスで依頼を受けて制作したイラスト。",
+    img: "https://static.wixstatic.com/media/cd63c9_391005772c1148419cca2c02b40eac8f~mv2.png",
+  },
+  {
+    title: "オリジナル 2019",
+    description:
+      "近所の風景を写生。ガッシュブラシを軸に制作し、水の表現を工夫。",
+    img: "https://static.wixstatic.com/media/cd63c9_aed33601f6e549a988c32fa1123ccf1c~mv2.png",
+  },
+  {
+    title: "オリジナル",
+    description:
+      "町のイラスト。CLIP STUDIOの機能を使用し、光をぼかしで表現。",
+    img: "https://static.wixstatic.com/media/cd63c9_6e3a2d4795f44664a454ce71c4c71005~mv2.png",
   },
 ]
 
@@ -621,6 +753,49 @@ function Works() {
           </p>
         </div>
       </Reveal>
+      {/* Graphic / Print Works */}
+<Reveal delay={0.1}>
+  <div className="mt-24 border-t border-[#1a1a2e]/10 pt-16">
+    <div className="flex items-end justify-between mb-12 border-b border-[#1a1a2e]/10 pb-6">
+      <h2 className="font-['Fraunces'] text-4xl md:text-6xl font-[300] text-[#1a1a2e]">
+        その他
+        <br />
+        <em className="italic text-[#c0392b]">制作実績</em>
+      </h2>
+
+      <span className="text-sm text-[#8a8680] font-['Inter'] mb-2">
+        イラスト・パンフレット・チラシ・グラフィック
+      </span>
+    </div>
+  </div>
+</Reveal>
+
+<div className="columns-1 md:columns-2 lg:columns-3 gap-6">
+  {graphicWorks.map((work, index) => (
+    <Reveal key={work.title} delay={index * 0.03}>
+      <article className="mb-6 break-inside-avoid overflow-hidden">
+        <div className="group relative overflow-hidden bg-[#e8e5df]">
+          <img
+            src={work.img}
+            alt={work.title}
+            loading="lazy"
+            className="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.03]"
+          />
+
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <h3 className="text-white font-['Fraunces'] text-lg">
+              {work.title}
+            </h3>
+
+            <p className="text-white/80 text-xs font-['Inter'] mt-1 leading-relaxed">
+              {work.description}
+            </p>
+          </div>
+        </div>
+      </article>
+    </Reveal>
+  ))}
+</div>
     </section>
   )
 }
