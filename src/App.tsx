@@ -79,7 +79,10 @@ function Cursor() {
 const navLinks = [
   { label: "ホーム", id: "home" },
   { label: "プロフィール", id: "profile" },
+  { label: "サービス", id: "services" },
   { label: "制作実績", id: "works" },
+  { label: "料金", id: "pricing" },
+  { label: "ご依頼の流れ", id: "process" },
   { label: "お問合せ", id: "contact" },
 ]
 
@@ -119,7 +122,7 @@ function Nav() {
           KATSUNOSHIN UTSUMI
         </motion.button>
 
-        <div className="hidden md:flex gap-8">
+        <div className="hidden lg:flex gap-7">
           {navLinks.map((l) => (
             <motion.button
               key={l.id}
@@ -134,7 +137,8 @@ function Nav() {
         </div>
 
         <button
-          className="md:hidden flex flex-col gap-1.5 w-6"
+          className="lg:hidden flex flex-col gap-1.5 w-6"
+          aria-label="メニュー"
           onClick={() => setOpen(!open)}
         >
           <motion.span
@@ -159,7 +163,7 @@ function Nav() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-30 bg-[#1a1a2e] flex flex-col items-center justify-center gap-10"
+            className="fixed inset-0 z-30 bg-[#1a1a2e] flex flex-col items-center justify-center gap-7"
           >
             {navLinks.map((l, i) => (
               <motion.button
@@ -171,7 +175,7 @@ function Nav() {
                   duration: 0.5,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="font-['Fraunces'] text-4xl font-light text-[#faf9f7] hover:text-[#c0392b] transition-colors"
+                className="font-['Fraunces'] text-3xl font-light text-[#faf9f7] hover:text-[#c0392b] transition-colors"
                 onClick={() => go(l.id)}
               >
                 {l.label}
@@ -252,7 +256,7 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-6"
         >
-          WEBデザイナー · グラフィックデザイナー · イラストレーター
+          Freelance Designer · Web / Graphic / Illustration
         </motion.p>
 
         <h1 className="font-['Fraunces'] text-[clamp(2.8rem,8vw,7.5rem)] font-[300] leading-[0.93] tracking-tight text-[#1a1a2e]">
@@ -284,7 +288,7 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.9 }}
           className="mt-6 text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed max-w-sm"
         >
-          WEBデザイナー / グラフィックデザイナー / イラストレーター — 1996年7月11日生まれ。福岡出身。
+          福岡を拠点に活動するフリーランスデザイナー。Webサイト制作・運用から、チラシ・パンフレット・イラストまで、企画からデザイン・実装・更新までワンストップで対応します。
         </motion.p>
 
         <motion.div
@@ -299,11 +303,11 @@ function Hero() {
             whileTap={{ scale: 0.98 }}
             onClick={() =>
               document
-                .getElementById("works")
+                .getElementById("contact")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
           >
-            制作実績を見る
+            お仕事のご相談
           </motion.button>
           <motion.button
             className="border border-[#1a1a2e]/30 text-[#1a1a2e] px-8 py-4 text-sm font-['Inter'] tracking-wide hover:border-[#c0392b] hover:text-[#c0392b] transition-colors duration-300"
@@ -311,11 +315,11 @@ function Hero() {
             whileTap={{ scale: 0.98 }}
             onClick={() =>
               document
-                .getElementById("profile")
+                .getElementById("works")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
           >
-            プロフィールを見る
+            制作実績を見る
           </motion.button>
         </motion.div>
       </motion.div>
@@ -340,7 +344,7 @@ function Hero() {
 
 // ── Profile ───────────────────────────────────────────────────────────────────
 function Profile() {
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -413,27 +417,26 @@ function Profile() {
           </Reveal>
           <Reveal delay={0.14}>
             <p className="text-[#8a8680] font-['Inter'] font-[300] leading-relaxed mb-5 text-sm">
-              １９９６年７月１１日生まれ。福岡育出身。趣味は野球観戦（オリックス）。
-              西南学院大学　経済学部　卒業後は、アルバイトを兼任しながらクリエイティブ系の仕事を目指し、
-              イラスト・WEBデザインを学ぶ。
+              福岡出身。西南学院大学 経済学部を卒業後、イラスト・WEBデザインを学び、
+              クリエイティブの道へ。趣味は野球観戦（オリックス）。
             </p>
           </Reveal>
           <Reveal delay={0.18}>
             <p className="text-[#8a8680] font-['Inter'] font-[300] leading-relaxed mb-10 text-sm">
-              デザイン関連・公文教室の教師・プロ野球のデータ入力や映像作成・クラウドワークスではイラストレーターの職務も経験。
-              株式会社ランドマークにて正社員雇用を経て、現在{" "}
+              不動産会社でのチラシ・パンフレット制作、{" "}
               <strong className="text-[#1a1a2e] font-[400]">
                 株式会社ホテリエ
               </strong>
-              にてWEBデザイナーとして経験。
+              でのホテルサイト制作・運用、プロ野球の映像制作、クラウドワークスでのイラスト制作などを経験。
+              現在はフリーランスとして、見た目の美しさだけでなく「集客や成果につながるデザイン」を大切に制作しています。
             </p>
           </Reveal>
           <Reveal delay={0.22}>
             <div className="grid grid-cols-3 gap-4 border-t border-[#1a1a2e]/10 pt-8">
               {[
-                { n: "10+", l: "制作実績" },
-                { n: "5+", l: "運営実績" },
-                { n: "3+", l: "職種経験" },
+                { n: "30+", l: "制作実績" },
+                { n: "5+", l: "サイト運用実績" },
+                { n: "4", l: "対応領域" },
               ].map(({ n, l }) => (
                 <div key={l}>
                   <motion.p
@@ -650,7 +653,7 @@ const graphicWorks = [
   },
 ]
 
-function WorkCard({ work, index }: { work: typeof works[0] index: number }) {
+function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
   const [hovered, setHovered] = useState(false)
   return (
     <Reveal delay={index * 0.07}>
@@ -857,6 +860,9 @@ function Skills() {
               <br />
               <em className="italic text-[#c0392b]">スキル</em>
             </h2>
+            <p className="text-sm text-[#faf9f7]/50 font-['Inter'] font-[300] leading-relaxed max-w-sm">
+              Photoshop / Illustrator / Figma / CLIP STUDIO / HTML・CSS・JavaScript / WordPress / 生成AIツール
+            </p>
           </Reveal>
         </div>
         <div>
@@ -884,7 +890,7 @@ function Skills() {
                 key={i}
                 className="font-['Fraunces'] text-xl italic text-[#faf9f7]/12 shrink-0"
               >
-                株式会社ニューブランド · 株式会社ランドマーク · はま唐亭 ·
+                お取引実績 — 株式会社ニューブランド · 株式会社ランドマーク · はま唐亭 ·
                 株式会社ホテリエ · 三都管財 · (株)トップ・プランニング ·&nbsp;
               </span>
             ))}
@@ -895,15 +901,373 @@ function Skills() {
   )
 }
 
+// ── Services ──────────────────────────────────────────────────────────────────
+const services = [
+  {
+    no: "01",
+    title: "Webサイト制作",
+    en: "Web Design",
+    text: "コーポレートサイト・LP・店舗サイトなど。WordPressでの構築にも対応し、公開後にご自身で更新できる形でお渡しします。",
+    tags: ["デザイン", "コーディング", "WordPress", "レスポンシブ"],
+  },
+  {
+    no: "02",
+    title: "サイト運用・更新",
+    en: "Maintenance",
+    text: "ページ追加・お知らせ更新・バナー差し替えなど、日々の運用をまるごとお任せいただけます。ホテル・飲食・不動産サイトでの運用実績あり。",
+    tags: ["更新代行", "改善提案", "SEO", "アクセス解析"],
+  },
+  {
+    no: "03",
+    title: "グラフィックデザイン",
+    en: "Graphic Design",
+    text: "チラシ・パンフレット・ポスター・会社案内など。写真加工やAI生成を活用し、短納期・高品質な制作を実現します。",
+    tags: ["チラシ", "パンフレット", "写真加工", "名刺"],
+  },
+  {
+    no: "04",
+    title: "イラスト制作",
+    en: "Illustration",
+    text: "広告・Webサイト用の挿絵、キャラクター、年賀状、風景画など。手描きの温かみのあるタッチからデジタルまで対応します。",
+    tags: ["挿絵", "キャラクター", "風景", "SNS用"],
+  },
+]
+
+function Services() {
+  return (
+    <section id="services" className="px-6 md:px-14 py-28 bg-[#f1eee8]">
+      <Reveal>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-[#1a1a2e]/10 pb-6">
+          <div>
+            <p className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-4">
+              Services
+            </p>
+            <h2 className="font-['Fraunces'] text-5xl md:text-7xl font-[300] text-[#1a1a2e]">
+              できる
+              <em className="italic text-[#c0392b]">こと</em>
+            </h2>
+          </div>
+          <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed max-w-md">
+            Webもグラフィックもイラストも、ひとりで一貫して担当。窓口がひとつなので、ブランドのトーンを揃えたまま、スムーズに制作を進められます。
+          </p>
+        </div>
+      </Reveal>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#1a1a2e]/10 border border-[#1a1a2e]/10">
+        {services.map((s, i) => (
+          <Reveal key={s.no} delay={i * 0.06} className="bg-[#f1eee8]">
+            <motion.div
+              className="group h-full p-8 md:p-10 hover:bg-[#faf9f7] transition-colors duration-300"
+              data-hover
+            >
+              <div className="flex items-baseline justify-between mb-6">
+                <span className="font-['Fraunces'] text-sm text-[#c0392b]">
+                  {s.no}
+                </span>
+                <span className="font-['Fraunces'] italic text-sm text-[#8a8680]">
+                  {s.en}
+                </span>
+              </div>
+              <h3 className="font-['Fraunces'] text-2xl md:text-3xl font-[300] text-[#1a1a2e] mb-4 group-hover:text-[#c0392b] transition-colors">
+                {s.title}
+              </h3>
+              <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed mb-6">
+                {s.text}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {s.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="text-xs font-['Inter'] text-[#1a1a2e]/70 border border-[#1a1a2e]/15 px-3 py-1 rounded-full"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// ── Pricing ───────────────────────────────────────────────────────────────────
+// 料金は参考価格です。実際の料金に合わせて調整してください。
+const pricing = [
+  {
+    name: "ランディングページ",
+    price: "150,000",
+    unit: "円〜",
+    note: "1ページ完結型 / スマホ対応",
+    items: ["構成・ワイヤーフレーム", "デザイン・コーディング", "フォーム設置", "修正2回まで"],
+  },
+  {
+    name: "コーポレートサイト",
+    price: "300,000",
+    unit: "円〜",
+    note: "WordPress / 5ページ程度",
+    items: ["サイト設計・デザイン", "WordPress構築", "お知らせ更新機能", "更新マニュアル付き"],
+    featured: true,
+  },
+  {
+    name: "サイト運用・更新",
+    price: "20,000",
+    unit: "円〜 / 月",
+    note: "月数回の更新を想定",
+    items: ["テキスト・画像更新", "バナー差し替え", "簡易な改善提案", "WordPress保守"],
+  },
+]
+
+const pricingSmall = [
+  { name: "バナー制作", price: "5,000円〜" },
+  { name: "チラシ（片面）", price: "30,000円〜" },
+  { name: "チラシ（両面）", price: "50,000円〜" },
+  { name: "パンフレット", price: "1ページ 15,000円〜" },
+  { name: "名刺デザイン", price: "10,000円〜" },
+  { name: "イラスト", price: "10,000円〜" },
+]
+
+function Pricing() {
+  return (
+    <section id="pricing" className="px-6 md:px-14 py-28 bg-[#faf9f7]">
+      <Reveal>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-[#1a1a2e]/10 pb-6">
+          <div>
+            <p className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-4">
+              Pricing
+            </p>
+            <h2 className="font-['Fraunces'] text-5xl md:text-7xl font-[300] text-[#1a1a2e]">
+              料金の
+              <em className="italic text-[#c0392b]">目安</em>
+            </h2>
+          </div>
+          <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed max-w-md">
+            内容・ボリュームによって変動します。ご予算に合わせたプランのご提案も可能ですので、お気軽にご相談ください。（表示価格は税別）
+          </p>
+        </div>
+      </Reveal>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {pricing.map((p, i) => (
+          <Reveal key={p.name} delay={i * 0.08}>
+            <motion.div
+              className={`relative h-full p-8 md:p-10 border ${
+                p.featured
+                  ? "bg-[#1a1a2e] border-[#1a1a2e] text-[#faf9f7]"
+                  : "border-[#1a1a2e]/12 text-[#1a1a2e]"
+              }`}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.3 }}
+            >
+              {p.featured && (
+                <span className="absolute -top-3 left-8 bg-[#c0392b] text-[#faf9f7] text-xs font-['Inter'] tracking-wide px-3 py-1">
+                  人気
+                </span>
+              )}
+              <p className="font-['Fraunces'] text-xl font-[400] mb-1">
+                {p.name}
+              </p>
+              <p
+                className={`text-xs font-['Inter'] mb-8 ${
+                  p.featured ? "text-[#faf9f7]/50" : "text-[#8a8680]"
+                }`}
+              >
+                {p.note}
+              </p>
+              <p className="mb-8 whitespace-nowrap">
+                <span className="font-['Fraunces'] text-4xl xl:text-5xl font-[300]">
+                  {p.price}
+                </span>
+                <span
+                  className={`text-sm font-['Inter'] ml-1 ${
+                    p.featured ? "text-[#faf9f7]/60" : "text-[#8a8680]"
+                  }`}
+                >
+                  {p.unit}
+                </span>
+              </p>
+              <ul
+                className={`space-y-3 border-t pt-6 ${
+                  p.featured ? "border-[#faf9f7]/15" : "border-[#1a1a2e]/10"
+                }`}
+              >
+                {p.items.map((item) => (
+                  <li
+                    key={item}
+                    className={`text-sm font-['Inter'] font-[300] flex gap-3 ${
+                      p.featured ? "text-[#faf9f7]/80" : "text-[#8a8680]"
+                    }`}
+                  >
+                    <span className="text-[#c0392b]">—</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </Reveal>
+        ))}
+      </div>
+
+      <Reveal delay={0.1}>
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 border-t border-[#1a1a2e]/10">
+          {pricingSmall.map((p) => (
+            <div
+              key={p.name}
+              className="flex justify-between items-baseline py-4 border-b border-[#1a1a2e]/8"
+            >
+              <span className="text-sm font-['Inter'] text-[#1a1a2e]">
+                {p.name}
+              </span>
+              <span className="font-['Fraunces'] text-base text-[#8a8680]">
+                {p.price}
+              </span>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+    </section>
+  )
+}
+
+// ── Process ───────────────────────────────────────────────────────────────────
+const steps = [
+  { title: "お問い合わせ", text: "フォームからご依頼内容・ご予算・ご希望の納期をお送りください。2営業日以内にご返信します。" },
+  { title: "ヒアリング", text: "オンラインまたはメールで、目的・ターゲット・イメージを詳しくお伺いします。" },
+  { title: "お見積り・ご契約", text: "制作範囲とスケジュールを明確にしたお見積りをご提示。ご納得いただけたら制作開始です。" },
+  { title: "デザイン制作", text: "構成案 → デザイン案の順にご確認いただきながら進めます。修正のご要望にも柔軟に対応します。" },
+  { title: "納品・公開", text: "最終確認後に納品・公開。Webサイトは更新方法のご説明や公開後の運用サポートも承ります。" },
+]
+
+function Process() {
+  return (
+    <section id="process" className="px-6 md:px-14 py-28 bg-[#f1eee8]">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16">
+        <Reveal>
+          <p className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-4">
+            Process
+          </p>
+          <h2 className="font-['Fraunces'] text-5xl md:text-6xl font-[300] text-[#1a1a2e] leading-tight mb-6">
+            ご依頼の
+            <br />
+            <em className="italic text-[#c0392b]">流れ</em>
+          </h2>
+          <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed max-w-xs">
+            はじめてデザインを依頼される方にも安心していただけるよう、各ステップを丁寧にご説明しながら進めます。
+          </p>
+        </Reveal>
+
+        <ol className="border-t border-[#1a1a2e]/10">
+          {steps.map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.06}>
+              <li className="grid grid-cols-[3rem_1fr] md:grid-cols-[5rem_12rem_1fr] gap-x-4 gap-y-2 py-7 border-b border-[#1a1a2e]/10">
+                <span className="font-['Fraunces'] text-2xl font-[300] text-[#c0392b] row-span-2 md:row-span-1">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="font-['Fraunces'] text-xl font-[400] text-[#1a1a2e]">
+                  {s.title}
+                </h3>
+                <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed">
+                  {s.text}
+                </p>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )
+}
+
+// ── FAQ ───────────────────────────────────────────────────────────────────────
+const clientFaq = [
+  { q: "遠方からでも依頼できますか？", a: "はい、全国対応しています。打ち合わせはオンライン（Zoom・Google Meet等）やメール・チャットで行いますので、場所を問わずご依頼いただけます。" },
+  { q: "制作期間はどのくらいですか？", a: "目安として、バナーは2〜3日、チラシは1〜2週間、LPは3〜4週間、コーポレートサイトは1〜2ヶ月ほどです。お急ぎの場合はご相談ください。" },
+  { q: "修正は何回までできますか？", a: "基本的には各工程で2回まで修正を含んでいます。それ以上の修正や大幅な変更が必要な場合は、事前にお見積りのうえ対応します。" },
+  { q: "原稿や写真が用意できていません。", a: "構成や文章のご提案、写真加工・素材選定からお手伝いできます。AI生成を活用した画像制作にも対応しています。" },
+  { q: "公開後の更新もお願いできますか？", a: "はい。月額の運用プランのほか、スポットでの更新作業も承ります。ご自身で更新できるよう、WordPressの操作方法もご説明します。" },
+  { q: "お支払い方法を教えてください。", a: "銀行振込でお願いしています。金額の大きい案件は、着手金と納品後の残金の2回に分けてのお支払いも可能です。" },
+]
+
+function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
+  return (
+    <section id="faq" className="px-6 md:px-14 py-28 bg-[#faf9f7]">
+      <div className="max-w-3xl mx-auto">
+        <Reveal>
+          <p className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-4">
+            FAQ
+          </p>
+          <h2 className="font-['Fraunces'] text-5xl md:text-6xl font-[300] text-[#1a1a2e] leading-tight mb-12">
+            よくある
+            <em className="italic text-[#c0392b]">ご質問</em>
+          </h2>
+        </Reveal>
+        <div className="border-t border-[#1a1a2e]/10">
+          {clientFaq.map((f, i) => {
+            const isOpen = openIndex === i
+            return (
+              <Reveal key={f.q} delay={i * 0.04}>
+                <div className="border-b border-[#1a1a2e]/10">
+                  <button
+                    className="w-full flex items-center justify-between gap-6 py-6 text-left"
+                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                  >
+                    <span className="flex gap-4 items-baseline">
+                      <span className="font-['Fraunces'] italic text-[#c0392b]">Q.</span>
+                      <span className="text-base font-['Inter'] text-[#1a1a2e]">{f.q}</span>
+                    </span>
+                    <motion.span
+                      animate={{ rotate: isOpen ? 45 : 0 }}
+                      className="text-xl text-[#8a8680] shrink-0 leading-none"
+                    >
+                      +
+                    </motion.span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pl-9 pb-6 text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed">
+                          {f.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </Reveal>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ── Contact ───────────────────────────────────────────────────────────────────
+const inquiryTypes = ["Webサイト制作", "サイト運用・更新", "チラシ・パンフレット", "イラスト", "その他・相談したい"]
+const budgets = ["〜5万円", "5〜15万円", "15〜30万円", "30万円以上", "未定・相談したい"]
+
 function Contact() {
   const [sent, setSent] = useState(false)
+  const [typeError, setTypeError] = useState(false)
   const [form, setForm] = useState({
     name: "",
     email: "",
-    subject: "",
+    company: "",
+    type: "",
+    budget: "",
+    deadline: "",
     message: "",
   })
+  const fieldClass =
+    "w-full border border-[#1a1a2e]/15 bg-transparent px-5 py-4 text-sm font-['Inter'] text-[#1a1a2e] placeholder:text-[#8a8680]/60 outline-none focus:border-[#c0392b] transition-colors"
 
   return (
     <section id="contact" className="px-6 md:px-14 py-28 bg-[#faf9f7]">
@@ -915,8 +1279,10 @@ function Contact() {
           <h2 className="font-['Fraunces'] text-5xl md:text-7xl font-[300] text-[#1a1a2e] leading-tight mb-4">
             お問合せ
           </h2>
-          <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] mb-12">
-            採用担当の方へ。ご質問・面談のご依頼はお気軽にどうぞ。
+          <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed mb-12">
+            お仕事のご依頼・お見積りのご相談はこちらから。
+            <br />
+            「まだ内容が固まっていない」という段階でもお気軽にどうぞ。2営業日以内にご返信します。
           </p>
         </Reveal>
 
@@ -940,7 +1306,7 @@ function Contact() {
                 送信が完了しました。
               </p>
               <p className="text-sm text-[#8a8680] font-['Inter'] mt-2">
-                お問い合わせありがとうございます。
+                お問い合わせありがとうございます。2営業日以内にご返信いたします。
               </p>
             </motion.div>
           ) : (
@@ -951,50 +1317,113 @@ function Contact() {
               className="space-y-4"
               onSubmit={(e) => {
                 e.preventDefault()
+                if (!form.type) {
+                  setTypeError(true)
+                  return
+                }
                 setSent(true)
               }}
             >
               <Reveal delay={0.05}>
-                <input
-                  type="text"
-                  placeholder="名前"
-                  required
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full border border-[#1a1a2e]/15 bg-transparent px-5 py-4 text-sm font-['Inter'] text-[#1a1a2e] placeholder:text-[#8a8680]/60 outline-none focus:border-[#c0392b] transition-colors"
-                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    placeholder="お名前 *"
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className={fieldClass}
+                  />
+                  <input
+                    type="text"
+                    placeholder="会社名・屋号"
+                    value={form.company}
+                    onChange={(e) =>
+                      setForm({ ...form, company: e.target.value })
+                    }
+                    className={fieldClass}
+                  />
+                </div>
               </Reveal>
               <Reveal delay={0.08}>
                 <input
                   type="email"
-                  placeholder="メールアドレス"
+                  placeholder="メールアドレス *"
                   required
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full border border-[#1a1a2e]/15 bg-transparent px-5 py-4 text-sm font-['Inter'] text-[#1a1a2e] placeholder:text-[#8a8680]/60 outline-none focus:border-[#c0392b] transition-colors"
+                  className={fieldClass}
                 />
               </Reveal>
               <Reveal delay={0.11}>
-                <input
-                  type="text"
-                  placeholder="件名"
-                  value={form.subject}
-                  onChange={(e) =>
-                    setForm({ ...form, subject: e.target.value })
-                  }
-                  className="w-full border border-[#1a1a2e]/15 bg-transparent px-5 py-4 text-sm font-['Inter'] text-[#1a1a2e] placeholder:text-[#8a8680]/60 outline-none focus:border-[#c0392b] transition-colors"
-                />
+                <div>
+                  <p className="text-xs font-['Inter'] text-[#8a8680] mb-3">
+                    ご依頼内容 *
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {inquiryTypes.map((t) => (
+                      <button
+                        key={t}
+                        type="button"
+                        onClick={() => {
+                          setForm({ ...form, type: t })
+                          setTypeError(false)
+                        }}
+                        aria-pressed={form.type === t}
+                        className={`text-sm font-['Inter'] px-4 py-2 border transition-colors ${
+                          form.type === t
+                            ? "bg-[#1a1a2e] border-[#1a1a2e] text-[#faf9f7]"
+                            : "border-[#1a1a2e]/15 text-[#1a1a2e] hover:border-[#c0392b]"
+                        }`}
+                      >
+                        {t}
+                      </button>
+                    ))}
+                  </div>
+                  {typeError && (
+                    <p className="text-xs text-[#c0392b] mt-2">
+                      ご依頼内容を選択してください。
+                    </p>
+                  )}
+                </div>
               </Reveal>
-              <Reveal delay={0.14}>
+              <Reveal delay={0.13}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <select
+                    value={form.budget}
+                    onChange={(e) =>
+                      setForm({ ...form, budget: e.target.value })
+                    }
+                    className={`${fieldClass} ${form.budget ? "" : "text-[#8a8680]/80"}`}
+                  >
+                    <option value="">ご予算</option>
+                    {budgets.map((b) => (
+                      <option key={b} value={b}>
+                        {b}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="text"
+                    placeholder="ご希望の納期（例：12月中旬）"
+                    value={form.deadline}
+                    onChange={(e) =>
+                      setForm({ ...form, deadline: e.target.value })
+                    }
+                    className={fieldClass}
+                  />
+                </div>
+              </Reveal>
+              <Reveal delay={0.15}>
                 <textarea
-                  placeholder="メッセージ"
+                  placeholder="ご依頼の詳細・ご質問など *"
                   rows={5}
                   required
                   value={form.message}
                   onChange={(e) =>
                     setForm({ ...form, message: e.target.value })
                   }
-                  className="w-full border border-[#1a1a2e]/15 bg-transparent px-5 py-4 text-sm font-['Inter'] text-[#1a1a2e] placeholder:text-[#8a8680]/60 outline-none focus:border-[#c0392b] transition-colors resize-none"
+                  className={`${fieldClass} resize-none`}
                 />
               </Reveal>
               <Reveal delay={0.17}>
@@ -1004,7 +1433,7 @@ function Contact() {
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  送信
+                  この内容で相談する →
                 </motion.button>
               </Reveal>
             </motion.form>
@@ -1051,91 +1480,74 @@ type Message = { role: "bot" | "user"; text: string }
 
 const faq: { q: string[]; a: string }[] = [
   {
-    q: ["プロフィール", "経歴", "自己紹介", "who", "誰", "名前", "どんな人"],
-    a: "KATSUNOSHIN UTSUMI（内海勝乃真）です。1996年7月11日生まれ、福岡出身です。西南学院大学経済学部を卒業後、デザイン・イラスト・映像制作などのクリエイティブ分野で経験を積み、現在はWEBデザインを中心に、サイト制作・運用、デザイン、コーディングなどに携わっています。"
+    q: ["料金", "費用", "値段", "価格", "いくら", "見積", "予算"],
+    a: "目安として、LPは15万円〜、WordPressのコーポレートサイトは30万円〜、チラシ（片面）は3万円〜、バナーは5,000円〜です。内容によって変わりますので、ご予算をお伝えいただければ、その範囲でできるプランをご提案します。お見積りは無料です。",
   },
-
   {
-    q: ["実績", "制作", "サイト", "ポートフォリオ", "作品", "hp"],
-    a: "WEBサイトの制作・運用を中心に、ホテル関連サイトなど複数のWeb制作に携わってきました。WordPressを使用したサイト制作や更新、ページ制作、デザインなど、企画・デザインから実装・運用まで幅広く経験しています。詳しい制作実績は、ページ内の「制作実績」からご覧いただけます。"
+    q: ["納期", "期間", "どのくらい", "いつまで", "急ぎ", "スケジュール"],
+    a: "目安は、バナー2〜3日、チラシ1〜2週間、LP3〜4週間、コーポレートサイト1〜2ヶ月ほどです。お急ぎの案件もできる限り対応しますので、ご希望の納期をお知らせください。",
   },
-
   {
-    q: ["スキル", "できる", "得意", "技術", "使える", "ツール", "何ができる", "できますか"],
-    a: "主なスキルは、HTML・CSS・JavaScript・jQuery・PHP（基礎）、WordPress、Photoshop、Illustrator、Figmaなどです。WEBデザインだけでなく、コーディングやサイト運用にも対応できます。また、SEOやアクセス解析、AIツールの活用にも取り組んでいます。"
+    q: ["依頼", "流れ", "進め方", "頼み方", "どうすれば", "手順"],
+    a: "①お問い合わせ → ②ヒアリング → ③お見積り・ご契約 → ④デザイン制作（途中でご確認いただきます） → ⑤納品・公開、という流れです。内容が固まっていない段階でのご相談も歓迎です。",
   },
-
   {
-    q: ["志望", "動機", "なぜ", "理由", "転職", "なぜ応募", "応募理由"],
-    a: "これまでWEBデザインやサイト制作・運用を通じて、デザインだけでなく、実装や運用、ユーザー目線での改善まで幅広く経験してきました。今後はこれまで培ったクリエイティブの経験を活かしながら、より幅広い業務に挑戦し、デザインと技術の両面から貢献していきたいと考えています。"
+    q: ["頼める", "できる", "対応", "サービス", "何が", "範囲", "スキル", "得意"],
+    a: "Webサイト制作（デザイン・コーディング・WordPress構築）、サイトの運用・更新代行、チラシ・パンフレットなどのグラフィックデザイン、イラスト制作に対応しています。Webと紙もの両方をひとりで担当できるので、デザインのトーンを揃えたまま制作できるのが強みです。",
   },
-
   {
-    q: ["強み", "長所", "アピール", "得意なこと"],
-    a: "デザインだけでなく、コーディングやWordPressでの実装・運用まで一貫して対応できることが強みです。また、イラストやグラフィック、映像制作などの経験もあり、目的に応じて複数のクリエイティブ領域を組み合わせて考えられます。"
+    q: ["実績", "制作", "作品", "ポートフォリオ", "事例"],
+    a: "ホテル・飲食店・不動産・コワーキングスペースなどのWebサイト制作・運用、マンションパンフレットや店舗チラシ、イラストなどの実績があります。詳しくはページ内の「制作実績」をご覧ください。",
   },
-
   {
-    q: ["短所", "弱み", "苦手", "弱点", "改善したい"],
-    a: "一つのことを深く考えすぎて、作業に時間をかけてしまうことがあります。そのため、最近は最初に目的や優先順位を整理し、まず全体を完成させてから細部を改善することを意識しています。"
+    q: ["wordpress", "ワードプレス", "更新", "運用", "保守"],
+    a: "WordPressでの構築・カスタマイズ・運用に対応しています。公開後にご自身で更新できるよう操作方法もお伝えしますし、月額2万円〜の運用プランで更新作業をまるごとお任せいただくことも可能です。",
   },
-
   {
-    q: ["前職", "ホテリエ", "仕事内容", "何をしていた"],
-    a: "株式会社ホテリエでは、ホテルのWebサイト制作・運用を中心に、WordPressを使ったサイト制作・更新、ページの調整、画像編集など、Webサイトに関する幅広い業務に携わっています。また、新規開業に伴うWebサイト制作にも関わり、関係者との調整やスケジュール管理など、制作以外の業務も経験しています。"
+    q: ["修正", "直し", "変更"],
+    a: "各工程で2回までの修正を料金に含んでいます。それ以上の修正や大幅な方向転換が必要な場合は、事前にお見積りしたうえで対応しますのでご安心ください。",
   },
-
   {
-    q: ["AI", "ai", "ＡＩ", "生成AI", "ChatGPT", "Claude", "AI活用"],
-    a: "ChatGPTやClaudeなどの生成AIを、業務効率化やアイデア整理、文章作成、コード作成などに活用しています。また、AIを単に利用するだけでなく、自分でAIを活用したWebアプリケーションや業務支援ツールを制作するなど、実際の業務や制作に活かす方法を試しています。"
+    q: ["遠方", "オンライン", "地域", "全国", "打ち合わせ", "福岡"],
+    a: "福岡を拠点にしていますが、全国どこからでもご依頼いただけます。打ち合わせはZoom・Google Meetなどのオンラインや、メール・チャットで行います。",
   },
-
   {
-    q: ["WordPress", "wordpress", "ワードプレス"],
-    a: "WordPressを使用したWEBサイトの制作・更新・運用経験があります。テーマやプラグインの設定だけでなく、HTML・CSSなどを使ったページの調整やカスタマイズにも対応できます。"
+    q: ["支払", "振込", "請求", "インボイス"],
+    a: "お支払いは銀行振込でお願いしています。金額の大きい案件は、着手金と納品後の残金に分けてのお支払いも可能です。",
   },
-
   {
-    q: ["プログラミング", "コーディング", "コード", "HTML", "CSS", "JavaScript", "jQuery"],
-    a: "HTML・CSS・JavaScript・jQueryを中心に、WEBサイトのコーディング経験があります。デザインをそのまま形にするだけでなく、レスポンシブ対応やユーザーが使いやすいUIを意識した実装を行っています。PHPについても基礎的な知識があります。"
+    q: ["ai", "ＡＩ", "生成", "chatgpt", "claude"],
+    a: "PhotoshopのAI生成機能による写真加工や、ChatGPT・Claudeなどを活用した原稿作成・コード作成で、品質を保ちながら制作のスピードアップを図っています。",
   },
-
   {
-    q: ["学歴", "大学", "卒業", "西南"],
-    a: "西南学院大学経済学部を卒業しています。大学卒業後はクリエイティブ分野で経験を積み、WEBデザインやサイト制作・運用などの仕事に携わってきました。"
+    q: ["イラスト", "キャラクター", "挿絵"],
+    a: "広告・Webサイト用の挿絵、キャラクター、年賀状、風景画などを制作しています。手描きの温かみのあるタッチを得意としています。1点1万円〜が目安です。",
   },
-
   {
-    q: ["趣味", "好き", "野球", "オリックス", "プライベート"],
-    a: "趣味は野球観戦です。試合を見るだけでなく、選手の成績やデータを見ながら分析することも好きです。興味を持ったことを調べて、データを整理・分析することが好きなタイプです。"
+    q: ["プロフィール", "経歴", "自己紹介", "誰", "どんな人"],
+    a: "KATSUNOSHIN UTSUMI（内海勝乃真）です。福岡出身のフリーランスデザイナーで、不動産会社での広告制作、ホテルのWebサイト制作・運用、映像制作、イラスト制作などの経験があります。",
   },
-
   {
-    q: ["将来", "今後", "キャリア"],
-    a: "今後は、WEB制作の経験をさらに広げて、WEBマーケティングやデータ活用、AIなどの領域にも取り組んでいきたいと考えています。制作・運用・改善を一つの流れとして考えられる人材になることを目指しています。"
+    q: ["連絡", "メール", "問い合わせ", "相談", "contact"],
+    a: "ページ下部のお問い合わせフォームからご連絡ください。2営業日以内にご返信します。「こんなことできる？」といったご相談だけでもお気軽にどうぞ。",
   },
-
-  {
-    q: ["連絡", "メール", "電話", "contact", "面談"],
-    a: "お問い合わせはページ下部のお問い合わせフォームからご連絡ください。採用や仕事内容についてのご質問、面談などもお気軽にお問い合わせください。"
-  }
 ]
 function getBotReply(input: string): string {
   const lower = input.toLowerCase()
   for (const { q, a } of faq) {
     if (q.some((kw) => lower.includes(kw))) return a
   }
-  return "ご質問ありがとうございます。「プロフィール」「スキル」「実績」「志望動機」「強み」「連絡先」などについてお答えできます。お気軽にどうぞ！"
+  return "ご質問ありがとうございます。「料金」「納期」「依頼の流れ」「対応範囲」「修正」「お支払い」などについてお答えできます。お気軽にどうぞ！"
 }
 
-const QUICK = ["プロフィールを教えて", "スキルは？", "志望動機は？", "強みは何ですか"]
+const QUICK = ["料金の目安は？", "納期はどのくらい？", "依頼の流れは？", "何を頼める？"]
 
 function Chatbot() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "bot",
-      text: "こんにちは！KATSUNOSHIN UTSUMIのポートフォリオへようこそ。\n採用に関するご質問に何でもお答えします😊\n下のボタンからお気軽にどうぞ！",
+      text: "こんにちは！KATSUNOSHIN UTSUMIのポートフォリオへようこそ。\n料金・納期・ご依頼の流れなど、お気軽にご質問ください😊\n下のボタンからお気軽にどうぞ！",
     },
   ])
   const [input, setInput] = useState("")
@@ -1170,7 +1582,7 @@ function Chatbot() {
               transition={{ duration: 0.2 }}
               className="bg-[#1a1a2e] text-[#faf9f7] text-xs font-['Inter'] px-3 py-1.5 whitespace-nowrap shadow-md"
             >
-              採用担当者向けQ&amp;A
+              ご依頼前のQ&amp;A
             </motion.div>
           )}
         </AnimatePresence>
@@ -1215,7 +1627,7 @@ function Chatbot() {
                 <p className="font-['Fraunces'] text-[#faf9f7] text-base font-[400] truncate">UTSUMI Assistant</p>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
-                  <p className="text-[#faf9f7]/50 text-xs font-['Inter']">オンライン · 採用担当者向けQ&amp;A</p>
+                  <p className="text-[#faf9f7]/50 text-xs font-['Inter']">オンライン · ご依頼前のQ&amp;A</p>
                 </div>
               </div>
             </div>
@@ -1407,8 +1819,12 @@ export default function App() {
       <main>
         <Hero />
         <Profile />
+        <Services />
         <Works />
         <Skills />
+        <Pricing />
+        <Process />
+        <FAQ />
         <Contact />
       </main>
       <Chatbot />
