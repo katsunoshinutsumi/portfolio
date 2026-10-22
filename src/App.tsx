@@ -81,9 +81,7 @@ const navLinks = [
   { label: "プロフィール", id: "profile" },
   { label: "サービス", id: "services" },
   { label: "制作実績", id: "works" },
-  { label: "料金", id: "pricing" },
-  { label: "ご依頼の流れ", id: "process" },
-  { label: "お問合せ", id: "contact" },
+  { label: "ご依頼について", id: "contact" },
 ]
 
 function Nav() {
@@ -303,11 +301,11 @@ function Hero() {
             whileTap={{ scale: 0.98 }}
             onClick={() =>
               document
-                .getElementById("contact")
+                .getElementById("works")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
           >
-            お仕事のご相談
+            制作実績を見る
           </motion.button>
           <motion.button
             className="border border-[#1a1a2e]/30 text-[#1a1a2e] px-8 py-4 text-sm font-['Inter'] tracking-wide hover:border-[#c0392b] hover:text-[#c0392b] transition-colors duration-300"
@@ -315,11 +313,11 @@ function Hero() {
             whileTap={{ scale: 0.98 }}
             onClick={() =>
               document
-                .getElementById("works")
+                .getElementById("services")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
           >
-            制作実績を見る
+            できることを見る
           </motion.button>
         </motion.div>
       </motion.div>
@@ -427,15 +425,15 @@ function Profile() {
               <strong className="text-[#1a1a2e] font-[400]">
                 株式会社ホテリエ
               </strong>
-              でのホテルサイト制作・運用、プロ野球の映像制作、クラウドワークスでのイラスト制作などを経験。
-              現在はフリーランスとして、見た目の美しさだけでなく「集客や成果につながるデザイン」を大切に制作しています。
+              でのホテルサイト制作・運用（現職）、プロ野球の映像制作、クラウドワークスでのイラスト制作などを経験。
+              現在はWEBデザイナーとして勤務しながら、クラウドワークスなどを通じてフリーランスでも制作を承っています。
             </p>
           </Reveal>
           <Reveal delay={0.22}>
             <div className="grid grid-cols-3 gap-4 border-t border-[#1a1a2e]/10 pt-8">
               {[
-                { n: "30+", l: "制作実績" },
-                { n: "5+", l: "サイト運用実績" },
+                { n: "10+", l: "制作実績" },
+                { n: "6+", l: "サイト運用実績" },
                 { n: "4", l: "対応領域" },
               ].map(({ n, l }) => (
                 <div key={l}>
@@ -465,6 +463,13 @@ function Profile() {
 // ── Works ─────────────────────────────────────────────────────────────────────
 
 const works = [
+  {
+    title: "Nhat Box",
+    category: "ECサイト制作/運営",
+    url: "https://nhatbox.space/",
+    color: "#1a1a1a",
+    img: "/images/works/nhatbox.png",
+  },
   {
     title: "ホテリエ",
     category: "HP制作/運営実績",
@@ -520,6 +525,15 @@ const works = [
     url: "https://zonk.jp/",
     color: "#111111",
     img: "/images/works/zonk.jpg",
+  },
+]
+
+const aiTools = [
+  {
+    no: "01",
+    title: "メール・LINE下書きツール",
+    text: "状況や受信文を入力すると、送信できる状態の下書きを生成。ビジネス敬語のルール、未記入箇所のハイライトとコピー防止、日程の自動抽出とGoogleカレンダー登録、祝日判定まで備えた実務向けツール。",
+    tags: ["React", "Next.js", "Claude / Gemini API", "Google SSO"],
   },
 ]
 
@@ -727,7 +741,7 @@ function Works() {
             <em className="italic text-[#c0392b]">実績</em>
           </h2>
           <span className="text-sm text-[#8a8680] font-['Inter'] mb-2">
-            HP制作 &amp; 運営実績
+            HP・EC制作 &amp; 運営実績
           </span>
         </div>
       </Reveal>
@@ -754,6 +768,44 @@ function Works() {
               YouTube で見る
             </a>
           </p>
+        </div>
+      </Reveal>
+      {/* AI tools */}
+      <Reveal delay={0.1}>
+        <div className="mt-16 border-t border-[#1a1a2e]/8 pt-10">
+          <p className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-6">
+            AIツール開発
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {aiTools.map((t) => (
+              <article
+                key={t.no}
+                className="border border-[#1a1a2e]/12 p-7"
+              >
+                <div className="flex items-baseline gap-3 mb-3">
+                  <span className="font-['Fraunces'] text-sm text-[#c0392b]">
+                    {t.no}
+                  </span>
+                  <h3 className="font-['Fraunces'] text-xl font-[300] text-[#1a1a2e]">
+                    {t.title}
+                  </h3>
+                </div>
+                <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed mb-5">
+                  {t.text}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {t.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs font-['Inter'] text-[#1a1a2e]/70 border border-[#1a1a2e]/15 px-3 py-1 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </Reveal>
       {/* Graphic / Print Works */}
@@ -890,7 +942,7 @@ function Skills() {
                 key={i}
                 className="font-['Fraunces'] text-xl italic text-[#faf9f7]/12 shrink-0"
               >
-                お取引実績 — 株式会社ニューブランド · 株式会社ランドマーク · はま唐亭 ·
+                株式会社ニューブランド · 株式会社ランドマーク · はま唐亭 ·
                 株式会社ホテリエ · 三都管財 · (株)トップ・プランニング ·&nbsp;
               </span>
             ))}
@@ -914,14 +966,14 @@ const services = [
     no: "02",
     title: "サイト運用・更新",
     en: "Maintenance",
-    text: "ページ追加・お知らせ更新・バナー差し替えなど、日々の運用をまるごとお任せいただけます。ホテル・飲食・不動産サイトでの運用実績あり。",
+    text: "ページ追加・お知らせ更新・バナー差し替えなど、日々の運用をまるごとお任せいただけます。ホテル・飲食・不動産サイトや自社ECサイトでの運用実績あり。",
     tags: ["更新代行", "改善提案", "SEO", "アクセス解析"],
   },
   {
     no: "03",
     title: "グラフィックデザイン",
     en: "Graphic Design",
-    text: "チラシ・パンフレット・ポスター・会社案内など。写真加工やAI生成を活用し、短納期・高品質な制作を実現します。",
+    text: "チラシ・パンフレット・ポスター・会社案内など。写真加工やAI生成も活用して制作します。",
     tags: ["チラシ", "パンフレット", "写真加工", "名刺"],
   },
   {
@@ -992,483 +1044,32 @@ function Services() {
   )
 }
 
-// ── Pricing ───────────────────────────────────────────────────────────────────
-// 料金は参考価格です。実際の料金に合わせて調整してください。
-const pricing = [
-  {
-    name: "ランディングページ",
-    price: "150,000",
-    unit: "円〜",
-    note: "1ページ完結型 / スマホ対応",
-    items: ["構成・ワイヤーフレーム", "デザイン・コーディング", "フォーム設置", "修正2回まで"],
-  },
-  {
-    name: "コーポレートサイト",
-    price: "300,000",
-    unit: "円〜",
-    note: "WordPress / 5ページ程度",
-    items: ["サイト設計・デザイン", "WordPress構築", "お知らせ更新機能", "更新マニュアル付き"],
-    featured: true,
-  },
-  {
-    name: "サイト運用・更新",
-    price: "20,000",
-    unit: "円〜 / 月",
-    note: "月数回の更新を想定",
-    items: ["テキスト・画像更新", "バナー差し替え", "簡易な改善提案", "WordPress保守"],
-  },
-]
-
-const pricingSmall = [
-  { name: "バナー制作", price: "5,000円〜" },
-  { name: "チラシ（片面）", price: "30,000円〜" },
-  { name: "チラシ（両面）", price: "50,000円〜" },
-  { name: "パンフレット", price: "1ページ 15,000円〜" },
-  { name: "名刺デザイン", price: "10,000円〜" },
-  { name: "イラスト", price: "10,000円〜" },
-]
-
-function Pricing() {
-  return (
-    <section id="pricing" className="px-6 md:px-14 py-28 bg-[#faf9f7]">
-      <Reveal>
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-[#1a1a2e]/10 pb-6">
-          <div>
-            <p className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-4">
-              Pricing
-            </p>
-            <h2 className="font-['Fraunces'] text-5xl md:text-7xl font-[300] text-[#1a1a2e]">
-              料金の
-              <em className="italic text-[#c0392b]">目安</em>
-            </h2>
-          </div>
-          <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed max-w-md">
-            内容・ボリュームによって変動します。ご予算に合わせたプランのご提案も可能ですので、お気軽にご相談ください。（表示価格は税別）
-          </p>
-        </div>
-      </Reveal>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {pricing.map((p, i) => (
-          <Reveal key={p.name} delay={i * 0.08}>
-            <motion.div
-              className={`relative h-full p-8 md:p-10 border ${
-                p.featured
-                  ? "bg-[#1a1a2e] border-[#1a1a2e] text-[#faf9f7]"
-                  : "border-[#1a1a2e]/12 text-[#1a1a2e]"
-              }`}
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.3 }}
-            >
-              {p.featured && (
-                <span className="absolute -top-3 left-8 bg-[#c0392b] text-[#faf9f7] text-xs font-['Inter'] tracking-wide px-3 py-1">
-                  人気
-                </span>
-              )}
-              <p className="font-['Fraunces'] text-xl font-[400] mb-1">
-                {p.name}
-              </p>
-              <p
-                className={`text-xs font-['Inter'] mb-8 ${
-                  p.featured ? "text-[#faf9f7]/50" : "text-[#8a8680]"
-                }`}
-              >
-                {p.note}
-              </p>
-              <p className="mb-8 whitespace-nowrap">
-                <span className="font-['Fraunces'] text-4xl xl:text-5xl font-[300]">
-                  {p.price}
-                </span>
-                <span
-                  className={`text-sm font-['Inter'] ml-1 ${
-                    p.featured ? "text-[#faf9f7]/60" : "text-[#8a8680]"
-                  }`}
-                >
-                  {p.unit}
-                </span>
-              </p>
-              <ul
-                className={`space-y-3 border-t pt-6 ${
-                  p.featured ? "border-[#faf9f7]/15" : "border-[#1a1a2e]/10"
-                }`}
-              >
-                {p.items.map((item) => (
-                  <li
-                    key={item}
-                    className={`text-sm font-['Inter'] font-[300] flex gap-3 ${
-                      p.featured ? "text-[#faf9f7]/80" : "text-[#8a8680]"
-                    }`}
-                  >
-                    <span className="text-[#c0392b]">—</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </Reveal>
-        ))}
-      </div>
-
-      <Reveal delay={0.1}>
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 border-t border-[#1a1a2e]/10">
-          {pricingSmall.map((p) => (
-            <div
-              key={p.name}
-              className="flex justify-between items-baseline py-4 border-b border-[#1a1a2e]/8"
-            >
-              <span className="text-sm font-['Inter'] text-[#1a1a2e]">
-                {p.name}
-              </span>
-              <span className="font-['Fraunces'] text-base text-[#8a8680]">
-                {p.price}
-              </span>
-            </div>
-          ))}
-        </div>
-      </Reveal>
-    </section>
-  )
-}
-
-// ── Process ───────────────────────────────────────────────────────────────────
-const steps = [
-  { title: "お問い合わせ", text: "フォームからご依頼内容・ご予算・ご希望の納期をお送りください。2営業日以内にご返信します。" },
-  { title: "ヒアリング", text: "オンラインまたはメールで、目的・ターゲット・イメージを詳しくお伺いします。" },
-  { title: "お見積り・ご契約", text: "制作範囲とスケジュールを明確にしたお見積りをご提示。ご納得いただけたら制作開始です。" },
-  { title: "デザイン制作", text: "構成案 → デザイン案の順にご確認いただきながら進めます。修正のご要望にも柔軟に対応します。" },
-  { title: "納品・公開", text: "最終確認後に納品・公開。Webサイトは更新方法のご説明や公開後の運用サポートも承ります。" },
-]
-
-function Process() {
-  return (
-    <section id="process" className="px-6 md:px-14 py-28 bg-[#f1eee8]">
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16">
-        <Reveal>
-          <p className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-4">
-            Process
-          </p>
-          <h2 className="font-['Fraunces'] text-5xl md:text-6xl font-[300] text-[#1a1a2e] leading-tight mb-6">
-            ご依頼の
-            <br />
-            <em className="italic text-[#c0392b]">流れ</em>
-          </h2>
-          <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed max-w-xs">
-            はじめてデザインを依頼される方にも安心していただけるよう、各ステップを丁寧にご説明しながら進めます。
-          </p>
-        </Reveal>
-
-        <ol className="border-t border-[#1a1a2e]/10">
-          {steps.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.06}>
-              <li className="grid grid-cols-[3rem_1fr] md:grid-cols-[5rem_12rem_1fr] gap-x-4 gap-y-2 py-7 border-b border-[#1a1a2e]/10">
-                <span className="font-['Fraunces'] text-2xl font-[300] text-[#c0392b] row-span-2 md:row-span-1">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="font-['Fraunces'] text-xl font-[400] text-[#1a1a2e]">
-                  {s.title}
-                </h3>
-                <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed">
-                  {s.text}
-                </p>
-              </li>
-            </Reveal>
-          ))}
-        </ol>
-      </div>
-    </section>
-  )
-}
-
-// ── FAQ ───────────────────────────────────────────────────────────────────────
-const clientFaq = [
-  { q: "遠方からでも依頼できますか？", a: "はい、全国対応しています。打ち合わせはオンライン（Zoom・Google Meet等）やメール・チャットで行いますので、場所を問わずご依頼いただけます。" },
-  { q: "制作期間はどのくらいですか？", a: "目安として、バナーは2〜3日、チラシは1〜2週間、LPは3〜4週間、コーポレートサイトは1〜2ヶ月ほどです。お急ぎの場合はご相談ください。" },
-  { q: "修正は何回までできますか？", a: "基本的には各工程で2回まで修正を含んでいます。それ以上の修正や大幅な変更が必要な場合は、事前にお見積りのうえ対応します。" },
-  { q: "原稿や写真が用意できていません。", a: "構成や文章のご提案、写真加工・素材選定からお手伝いできます。AI生成を活用した画像制作にも対応しています。" },
-  { q: "公開後の更新もお願いできますか？", a: "はい。月額の運用プランのほか、スポットでの更新作業も承ります。ご自身で更新できるよう、WordPressの操作方法もご説明します。" },
-  { q: "お支払い方法を教えてください。", a: "銀行振込でお願いしています。金額の大きい案件は、着手金と納品後の残金の2回に分けてのお支払いも可能です。" },
-]
-
-function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
-  return (
-    <section id="faq" className="px-6 md:px-14 py-28 bg-[#faf9f7]">
-      <div className="max-w-3xl mx-auto">
-        <Reveal>
-          <p className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-4">
-            FAQ
-          </p>
-          <h2 className="font-['Fraunces'] text-5xl md:text-6xl font-[300] text-[#1a1a2e] leading-tight mb-12">
-            よくある
-            <em className="italic text-[#c0392b]">ご質問</em>
-          </h2>
-        </Reveal>
-        <div className="border-t border-[#1a1a2e]/10">
-          {clientFaq.map((f, i) => {
-            const isOpen = openIndex === i
-            return (
-              <Reveal key={f.q} delay={i * 0.04}>
-                <div className="border-b border-[#1a1a2e]/10">
-                  <button
-                    className="w-full flex items-center justify-between gap-6 py-6 text-left"
-                    onClick={() => setOpenIndex(isOpen ? null : i)}
-                    aria-expanded={isOpen}
-                  >
-                    <span className="flex gap-4 items-baseline">
-                      <span className="font-['Fraunces'] italic text-[#c0392b]">Q.</span>
-                      <span className="text-base font-['Inter'] text-[#1a1a2e]">{f.q}</span>
-                    </span>
-                    <motion.span
-                      animate={{ rotate: isOpen ? 45 : 0 }}
-                      className="text-xl text-[#8a8680] shrink-0 leading-none"
-                    >
-                      +
-                    </motion.span>
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                        className="overflow-hidden"
-                      >
-                        <p className="pl-9 pb-6 text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed">
-                          {f.a}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </Reveal>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // ── Contact ───────────────────────────────────────────────────────────────────
-const inquiryTypes = ["Webサイト制作", "サイト運用・更新", "チラシ・パンフレット", "イラスト", "その他・相談したい"]
-const budgets = ["〜5万円", "5〜15万円", "15〜30万円", "30万円以上", "未定・相談したい"]
-
 function Contact() {
-  const [sent, setSent] = useState(false)
-  const [typeError, setTypeError] = useState(false)
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    type: "",
-    budget: "",
-    deadline: "",
-    message: "",
-  })
-  const fieldClass =
-    "w-full border border-[#1a1a2e]/15 bg-transparent px-5 py-4 text-sm font-['Inter'] text-[#1a1a2e] placeholder:text-[#8a8680]/60 outline-none focus:border-[#c0392b] transition-colors"
-
   return (
     <section id="contact" className="px-6 md:px-14 py-28 bg-[#faf9f7]">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto text-center">
         <Reveal>
           <p className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-4">
             Contact
           </p>
-          <h2 className="font-['Fraunces'] text-5xl md:text-7xl font-[300] text-[#1a1a2e] leading-tight mb-4">
-            お問合せ
+          <h2 className="font-['Fraunces'] text-5xl md:text-7xl font-[300] text-[#1a1a2e] leading-tight mb-8">
+            ご依頼に
+            <em className="italic text-[#c0392b]">ついて</em>
           </h2>
-          <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed mb-12">
-            お仕事のご依頼・お見積りのご相談はこちらから。
-            <br />
-            「まだ内容が固まっていない」という段階でもお気軽にどうぞ。2営業日以内にご返信します。
+          <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed">
+            お仕事のご依頼は、クラウドワークスなどのクラウドソーシングサービス経由で承っております。
           </p>
         </Reveal>
-
-        <AnimatePresence mode="wait">
-          {sent ? (
-            <motion.div
-              key="done"
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-center py-20"
-            >
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: "spring", stiffness: 260, damping: 18 }}
-                className="w-16 h-16 rounded-full bg-[#c0392b] flex items-center justify-center mx-auto mb-6"
-              >
-                <span className="text-[#faf9f7] text-2xl">✓</span>
-              </motion.div>
-              <p className="font-['Fraunces'] text-2xl text-[#1a1a2e] italic">
-                送信が完了しました。
-              </p>
-              <p className="text-sm text-[#8a8680] font-['Inter'] mt-2">
-                お問い合わせありがとうございます。2営業日以内にご返信いたします。
-              </p>
-            </motion.div>
-          ) : (
-            <motion.form
-              key="form"
-              initial={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="space-y-4"
-              onSubmit={(e) => {
-                e.preventDefault()
-                if (!form.type) {
-                  setTypeError(true)
-                  return
-                }
-                setSent(true)
-              }}
-            >
-              <Reveal delay={0.05}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    placeholder="お名前 *"
-                    required
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className={fieldClass}
-                  />
-                  <input
-                    type="text"
-                    placeholder="会社名・屋号"
-                    value={form.company}
-                    onChange={(e) =>
-                      setForm({ ...form, company: e.target.value })
-                    }
-                    className={fieldClass}
-                  />
-                </div>
-              </Reveal>
-              <Reveal delay={0.08}>
-                <input
-                  type="email"
-                  placeholder="メールアドレス *"
-                  required
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className={fieldClass}
-                />
-              </Reveal>
-              <Reveal delay={0.11}>
-                <div>
-                  <p className="text-xs font-['Inter'] text-[#8a8680] mb-3">
-                    ご依頼内容 *
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {inquiryTypes.map((t) => (
-                      <button
-                        key={t}
-                        type="button"
-                        onClick={() => {
-                          setForm({ ...form, type: t })
-                          setTypeError(false)
-                        }}
-                        aria-pressed={form.type === t}
-                        className={`text-sm font-['Inter'] px-4 py-2 border transition-colors ${
-                          form.type === t
-                            ? "bg-[#1a1a2e] border-[#1a1a2e] text-[#faf9f7]"
-                            : "border-[#1a1a2e]/15 text-[#1a1a2e] hover:border-[#c0392b]"
-                        }`}
-                      >
-                        {t}
-                      </button>
-                    ))}
-                  </div>
-                  {typeError && (
-                    <p className="text-xs text-[#c0392b] mt-2">
-                      ご依頼内容を選択してください。
-                    </p>
-                  )}
-                </div>
-              </Reveal>
-              <Reveal delay={0.13}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <select
-                    value={form.budget}
-                    onChange={(e) =>
-                      setForm({ ...form, budget: e.target.value })
-                    }
-                    className={`${fieldClass} ${form.budget ? "" : "text-[#8a8680]/80"}`}
-                  >
-                    <option value="">ご予算</option>
-                    {budgets.map((b) => (
-                      <option key={b} value={b}>
-                        {b}
-                      </option>
-                    ))}
-                  </select>
-                  <input
-                    type="text"
-                    placeholder="ご希望の納期（例：12月中旬）"
-                    value={form.deadline}
-                    onChange={(e) =>
-                      setForm({ ...form, deadline: e.target.value })
-                    }
-                    className={fieldClass}
-                  />
-                </div>
-              </Reveal>
-              <Reveal delay={0.15}>
-                <textarea
-                  placeholder="ご依頼の詳細・ご質問など *"
-                  rows={5}
-                  required
-                  value={form.message}
-                  onChange={(e) =>
-                    setForm({ ...form, message: e.target.value })
-                  }
-                  className={`${fieldClass} resize-none`}
-                />
-              </Reveal>
-              <Reveal delay={0.17}>
-                <motion.button
-                  type="submit"
-                  className="w-full bg-[#1a1a2e] text-[#faf9f7] py-4 text-sm font-['Inter'] tracking-wide hover:bg-[#c0392b] transition-colors duration-300"
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  この内容で相談する →
-                </motion.button>
-              </Reveal>
-            </motion.form>
-          )}
-        </AnimatePresence>
       </div>
 
       {/* Footer */}
       <Reveal delay={0.1}>
-        <div className="mt-24 pt-10 border-t border-[#1a1a2e]/10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#8a8680] font-['Inter']">
-          <div>
-            <span className="font-['Fraunces'] text-base text-[#1a1a2e] mr-3">
-              KATSUNOSHIN UTSUMI
-            </span>
-            <span>© 2026</span>
-          </div>
-          <div className="flex gap-6">
-            {["Facebook", "Twitter", "LinkedIn"].map((s) => (
-              <motion.a
-                key={s}
-                href="#"
-                className="hover:text-[#c0392b] transition-colors"
-                whileHover={{ y: -2 }}
-              >
-                {s}
-              </motion.a>
-            ))}
-            <motion.a
-              href="tel:09028505371"
-              className="hover:text-[#c0392b] transition-colors"
-              whileHover={{ y: -2 }}
-            >
-              090-2850-5371
-            </motion.a>
-          </div>
+        <div className="mt-24 pt-10 border-t border-[#1a1a2e]/10 text-center text-sm text-[#8a8680] font-['Inter']">
+          <span className="font-['Fraunces'] text-base text-[#1a1a2e] mr-3">
+            KATSUNOSHIN UTSUMI
+          </span>
+          <span>© 2026</span>
         </div>
       </Reveal>
     </section>
@@ -1480,40 +1081,20 @@ type Message = { role: "bot" | "user"; text: string }
 
 const faq: { q: string[]; a: string }[] = [
   {
-    q: ["料金", "費用", "値段", "価格", "いくら", "見積", "予算"],
-    a: "目安として、LPは15万円〜、WordPressのコーポレートサイトは30万円〜、チラシ（片面）は3万円〜、バナーは5,000円〜です。内容によって変わりますので、ご予算をお伝えいただければ、その範囲でできるプランをご提案します。お見積りは無料です。",
-  },
-  {
-    q: ["納期", "期間", "どのくらい", "いつまで", "急ぎ", "スケジュール"],
-    a: "目安は、バナー2〜3日、チラシ1〜2週間、LP3〜4週間、コーポレートサイト1〜2ヶ月ほどです。お急ぎの案件もできる限り対応しますので、ご希望の納期をお知らせください。",
-  },
-  {
-    q: ["依頼", "流れ", "進め方", "頼み方", "どうすれば", "手順"],
-    a: "①お問い合わせ → ②ヒアリング → ③お見積り・ご契約 → ④デザイン制作（途中でご確認いただきます） → ⑤納品・公開、という流れです。内容が固まっていない段階でのご相談も歓迎です。",
+    q: ["料金", "費用", "値段", "価格", "いくら", "見積", "予算", "納期", "依頼", "連絡", "問い合わせ", "相談", "契約", "支払"],
+    a: "お仕事のご依頼は、クラウドワークスなどのクラウドソーシングサービス経由で承っております。料金や納期などの条件は、案件ごとにサービス上でご相談させてください。",
   },
   {
     q: ["頼める", "できる", "対応", "サービス", "何が", "範囲", "スキル", "得意"],
-    a: "Webサイト制作（デザイン・コーディング・WordPress構築）、サイトの運用・更新代行、チラシ・パンフレットなどのグラフィックデザイン、イラスト制作に対応しています。Webと紙もの両方をひとりで担当できるので、デザインのトーンを揃えたまま制作できるのが強みです。",
+    a: "Webサイト制作（デザイン・コーディング・WordPress構築）、サイトの運用・更新、チラシ・パンフレットなどのグラフィックデザイン、イラスト制作に対応しています。",
   },
   {
     q: ["実績", "制作", "作品", "ポートフォリオ", "事例"],
-    a: "ホテル・飲食店・不動産・コワーキングスペースなどのWebサイト制作・運用、マンションパンフレットや店舗チラシ、イラストなどの実績があります。詳しくはページ内の「制作実績」をご覧ください。",
+    a: "ホテル・飲食店・不動産・コワーキングスペースなどのWebサイト制作・運用、自社ECサイト「Nhat Box」の制作・運営、メール下書きなどのAIツール開発、マンションパンフレットや店舗チラシ、イラストなどの実績があります。詳しくはページ内の「制作実績」をご覧ください。",
   },
   {
     q: ["wordpress", "ワードプレス", "更新", "運用", "保守"],
-    a: "WordPressでの構築・カスタマイズ・運用に対応しています。公開後にご自身で更新できるよう操作方法もお伝えしますし、月額2万円〜の運用プランで更新作業をまるごとお任せいただくことも可能です。",
-  },
-  {
-    q: ["修正", "直し", "変更"],
-    a: "各工程で2回までの修正を料金に含んでいます。それ以上の修正や大幅な方向転換が必要な場合は、事前にお見積りしたうえで対応しますのでご安心ください。",
-  },
-  {
-    q: ["遠方", "オンライン", "地域", "全国", "打ち合わせ", "福岡"],
-    a: "福岡を拠点にしていますが、全国どこからでもご依頼いただけます。打ち合わせはZoom・Google Meetなどのオンラインや、メール・チャットで行います。",
-  },
-  {
-    q: ["支払", "振込", "請求", "インボイス"],
-    a: "お支払いは銀行振込でお願いしています。金額の大きい案件は、着手金と納品後の残金に分けてのお支払いも可能です。",
+    a: "WordPressでのサイト構築・カスタマイズ・更新・運用に対応しています。",
   },
   {
     q: ["ai", "ＡＩ", "生成", "chatgpt", "claude"],
@@ -1521,15 +1102,11 @@ const faq: { q: string[]; a: string }[] = [
   },
   {
     q: ["イラスト", "キャラクター", "挿絵"],
-    a: "広告・Webサイト用の挿絵、キャラクター、年賀状、風景画などを制作しています。手描きの温かみのあるタッチを得意としています。1点1万円〜が目安です。",
+    a: "広告・Webサイト用の挿絵、キャラクター、年賀状、風景画などを制作しています。手描きの温かみのあるタッチを得意としています。",
   },
   {
     q: ["プロフィール", "経歴", "自己紹介", "誰", "どんな人"],
-    a: "KATSUNOSHIN UTSUMI（内海勝乃真）です。福岡出身のフリーランスデザイナーで、不動産会社での広告制作、ホテルのWebサイト制作・運用、映像制作、イラスト制作などの経験があります。",
-  },
-  {
-    q: ["連絡", "メール", "問い合わせ", "相談", "contact"],
-    a: "ページ下部のお問い合わせフォームからご連絡ください。2営業日以内にご返信します。「こんなことできる？」といったご相談だけでもお気軽にどうぞ。",
+    a: "KATSUNOSHIN UTSUMI（内海勝乃真）です。福岡出身で、現在は株式会社ホテリエでWEBデザイナーとして勤務しています。不動産会社での広告制作、映像制作、イラスト制作などの経験もあります。",
   },
 ]
 function getBotReply(input: string): string {
@@ -1537,17 +1114,17 @@ function getBotReply(input: string): string {
   for (const { q, a } of faq) {
     if (q.some((kw) => lower.includes(kw))) return a
   }
-  return "ご質問ありがとうございます。「料金」「納期」「依頼の流れ」「対応範囲」「修正」「お支払い」などについてお答えできます。お気軽にどうぞ！"
+  return "ご質問ありがとうございます。「対応範囲」「実績」「プロフィール」「ご依頼方法」などについてお答えできます。お気軽にどうぞ！"
 }
 
-const QUICK = ["料金の目安は？", "納期はどのくらい？", "依頼の流れは？", "何を頼める？"]
+const QUICK = ["何を頼める？", "実績を見たい", "プロフィールは？", "依頼するには？"]
 
 function Chatbot() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "bot",
-      text: "こんにちは！KATSUNOSHIN UTSUMIのポートフォリオへようこそ。\n料金・納期・ご依頼の流れなど、お気軽にご質問ください😊\n下のボタンからお気軽にどうぞ！",
+      text: "こんにちは！KATSUNOSHIN UTSUMIのポートフォリオへようこそ。\n対応範囲や実績について、お気軽にご質問ください😊\n下のボタンからお気軽にどうぞ！",
     },
   ])
   const [input, setInput] = useState("")
@@ -1582,7 +1159,7 @@ function Chatbot() {
               transition={{ duration: 0.2 }}
               className="bg-[#1a1a2e] text-[#faf9f7] text-xs font-['Inter'] px-3 py-1.5 whitespace-nowrap shadow-md"
             >
-              ご依頼前のQ&amp;A
+              Q&amp;A
             </motion.div>
           )}
         </AnimatePresence>
@@ -1627,7 +1204,7 @@ function Chatbot() {
                 <p className="font-['Fraunces'] text-[#faf9f7] text-base font-[400] truncate">UTSUMI Assistant</p>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
-                  <p className="text-[#faf9f7]/50 text-xs font-['Inter']">オンライン · ご依頼前のQ&amp;A</p>
+                  <p className="text-[#faf9f7]/50 text-xs font-['Inter']">オンライン · Q&amp;A</p>
                 </div>
               </div>
             </div>
@@ -1822,9 +1399,6 @@ export default function App() {
         <Services />
         <Works />
         <Skills />
-        <Pricing />
-        <Process />
-        <FAQ />
         <Contact />
       </main>
       <Chatbot />
