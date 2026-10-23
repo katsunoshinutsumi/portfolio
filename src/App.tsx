@@ -560,13 +560,13 @@ const signWorks = [
 
 const logoWorks = [
   {
-    title: "HOTARU",
+    title: "HOTARU（Irodori Hotel）",
     description: "宿泊施設のロゴ。漢字の「蛍」をモチーフに、六角形の枠で構成。看板や暖簾に展開。",
     img: "/images/works/logo01.jpg",
   },
   {
     title: "KAZE（Irodori Hotel）",
-    description: "宿泊施設のロゴ。漢字の「風」をモチーフに、HOTARUと同じ六角形のシリーズで統一。看板や暖簾に展開。",
+    description: "宿泊施設のロゴ。漢字の「風」をモチーフに、六角形の枠で構成。看板や暖簾に展開。",
     img: "/images/works/logo02.jpg",
   },
   {
@@ -672,10 +672,10 @@ const graphicWorks = [
     img: "https://static.wixstatic.com/media/cd63c9_6e317585a95845249a55cc3776f6d6bc~mv2.jpg",
   },
   {
-    title: "ネットカフェポスター",
+    title: "漫画新刊ポスター",
     description:
-      "Webサイトの素材を利用し、Photoshopでアングルなどを調整して制作。",
-    img: "https://static.wixstatic.com/media/cd63c9_dbe7b6e24d1546919653fff62ab2ad5a~mv2.png",
+      "ネットカフェ店内に掲示した、今月の漫画新刊を紹介するポスター。Webサイトの素材を利用し、Photoshopでアングルなどを調整して制作。",
+    img: "/images/works/manga_poster.jpg",
   },
   {
     title: "会社案内",
@@ -695,19 +695,13 @@ const graphicWorks = [
   {
     title: "フリーランス",
     description: "フリーランスで依頼を受けて制作したイラスト。",
-    img: "https://static.wixstatic.com/media/cd63c9_391005772c1148419cca2c02b40eac8f~mv2.png",
+    img: "/images/works/freelance.jpg",
   },
   {
     title: "オリジナル 2019",
     description:
       "近所の風景を写生。ガッシュブラシを軸に制作し、水の表現を工夫。",
     img: "https://static.wixstatic.com/media/cd63c9_aed33601f6e549a988c32fa1123ccf1c~mv2.png",
-  },
-  {
-    title: "オリジナル",
-    description:
-      "町のイラスト。CLIP STUDIOの機能を使用し、光をぼかしで表現。",
-    img: "https://static.wixstatic.com/media/cd63c9_6e3a2d4795f44664a454ce71c4c71005~mv2.png",
   },
 ]
 
