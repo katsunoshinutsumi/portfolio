@@ -10,19 +10,46 @@ import {
 } from "framer-motion"
 
 // ── Scroll reveal ─────────────────────────────────────────────────────────────
+const MOBILE_QUERY = "(max-width: 767px)"
+
+function useIsMobile() {
+  const [mobile, setMobile] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(MOBILE_QUERY).matches
+  )
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_QUERY)
+    const fn = () => setMobile(mq.matches)
+    mq.addEventListener("change", fn)
+    return () => mq.removeEventListener("change", fn)
+  }, [])
+  return mobile
+}
+
 function Reveal({
   children,
   delay = 0,
   y = 36,
   className,
+  mobileStatic = false,
 }: {
   children: React.ReactNode
   delay?: number
   y?: number
   className?: string
+  // スマホでは一覧の1枚ずつのフェードインを省き、すぐに表示する
+  mobileStatic?: boolean
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: "-60px 0px" })
+  const isMobile = useIsMobile()
+  if (mobileStatic && isMobile) {
+    // ref を付けておくと、画面幅が広がってアニメーション表示に切り替わっても表示済みとして扱われる
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    )
+  }
   return (
     <motion.div
       ref={ref}
@@ -707,10 +734,10 @@ const graphicWorks = [
 
 function Gallery({ items }: { items: typeof graphicWorks }) {
   return (
-    <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
+    <div className="columns-2 lg:columns-3 gap-3 md:gap-6">
       {items.map((work, index) => (
-        <Reveal key={work.title} delay={index * 0.03}>
-          <article className="mb-6 break-inside-avoid overflow-hidden">
+        <Reveal key={work.title} delay={index * 0.03} mobileStatic>
+          <article className="mb-3 md:mb-6 break-inside-avoid overflow-hidden">
             <div className="group relative overflow-hidden bg-[#e8e5df]">
               <img
                 src={work.img}
@@ -739,7 +766,7 @@ function Gallery({ items }: { items: typeof graphicWorks }) {
 function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
   const [hovered, setHovered] = useState(false)
   return (
-    <Reveal delay={index * 0.07}>
+    <Reveal delay={index * 0.07} mobileStatic>
       <motion.article
         className="cursor-pointer overflow-hidden"
         onHoverStart={() => setHovered(true)}
@@ -775,12 +802,17 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
             </motion.a>
           </motion.div>
         </div>
-        <div className="pt-4 pb-6 flex items-start justify-between">
-          <div>
-            <h3 className="font-['Fraunces'] text-lg font-[300] text-[#1a1a2e] group-hover:text-[#c0392b] transition-colors">
+        <a
+          href={work.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pt-3 pb-5 md:pt-4 md:pb-6 flex items-start justify-between gap-2"
+        >
+          <div className="min-w-0">
+            <h3 className="font-['Fraunces'] text-sm md:text-lg font-[300] text-[#1a1a2e] leading-snug">
               {work.title}
             </h3>
-            <p className="text-xs text-[#8a8680] font-['Inter'] mt-1">
+            <p className="text-[11px] md:text-xs text-[#8a8680] font-['Inter'] mt-1">
               {work.category}
             </p>
           </div>
@@ -789,11 +821,11 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
               color: hovered ? "#c0392b" : "#8a8680",
               x: hovered ? 3 : 0,
             }}
-            className="text-lg mt-1"
+            className="text-base md:text-lg mt-0.5 md:mt-1"
           >
             ↗
           </motion.span>
-        </div>
+        </a>
       </motion.article>
     </Reveal>
   )
@@ -814,7 +846,7 @@ function Works() {
           </span>
         </div>
       </Reveal>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-3 md:gap-x-8 gap-y-2">
         {works.map((w, i) => (
           <WorkCard key={w.title} work={w} index={i} />
         ))}
