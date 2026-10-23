@@ -537,6 +537,50 @@ const aiTools = [
   },
 ]
 
+const signWorks = [
+  {
+    title: "館内サイン（goom JOJO）",
+    description:
+      "チェックイン用タブレットの場所を案内するエントランスサイン。日本語・英語・韓国語・中国語（簡体字・繁体字）の多言語表記。",
+    img: "/images/works/hotel_entrance.jpg",
+  },
+  {
+    title: "客室ドアサイン（レイナス博多）",
+    description:
+      "旅館業の営業許可表示、スマートロックの解錠・施錠方法、禁煙案内。ピクトグラムで言語を問わず操作が伝わるよう制作。",
+    img: "/images/works/hotel_key.jpg",
+  },
+  {
+    title: "客室内掲示物",
+    description:
+      "施設の利用ルール、トイレの使用方法、ゴミの分別、騒音・禁煙の注意書き。ピクトグラムと多言語表記で統一したデザイン。",
+    img: "/images/works/hotel_room.jpg",
+  },
+]
+
+const logoWorks = [
+  {
+    title: "HOTARU",
+    description: "宿泊施設のロゴ。漢字の「蛍」をモチーフに、六角形の枠で構成。看板や暖簾に展開。",
+    img: "/images/works/logo01.jpg",
+  },
+  {
+    title: "KAZE（Irodori Hotel）",
+    description: "宿泊施設のロゴ。漢字の「風」をモチーフに、HOTARUと同じ六角形のシリーズで統一。看板や暖簾に展開。",
+    img: "/images/works/logo02.jpg",
+  },
+  {
+    title: "Darin",
+    description: "宿泊施設のロゴと、グランドオープンの告知ビジュアル。",
+    img: "/images/works/logo03.jpg",
+  },
+  {
+    title: "Ojanse博多",
+    description: "宿泊施設のロゴと、定員を伝える告知ビジュアル。",
+    img: "/images/works/logo04.jpg",
+  },
+]
+
 const graphicWorks = [
   {
     title: "写真加工",
@@ -666,6 +710,37 @@ const graphicWorks = [
     img: "https://static.wixstatic.com/media/cd63c9_6e3a2d4795f44664a454ce71c4c71005~mv2.png",
   },
 ]
+
+function Gallery({ items }: { items: typeof graphicWorks }) {
+  return (
+    <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
+      {items.map((work, index) => (
+        <Reveal key={work.title} delay={index * 0.03}>
+          <article className="mb-6 break-inside-avoid overflow-hidden">
+            <div className="group relative overflow-hidden bg-[#e8e5df]">
+              <img
+                src={work.img}
+                alt={work.title}
+                loading="lazy"
+                className="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-white font-['Fraunces'] text-lg">
+                  {work.title}
+                </h3>
+
+                <p className="text-white/80 text-xs font-['Inter'] mt-1 leading-relaxed">
+                  {work.description}
+                </p>
+              </div>
+            </div>
+          </article>
+        </Reveal>
+      ))}
+    </div>
+  )
+}
 
 function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
   const [hovered, setHovered] = useState(false)
@@ -819,38 +894,26 @@ function Works() {
       </h2>
 
       <span className="text-sm text-[#8a8680] font-['Inter'] mb-2">
-        イラスト・パンフレット・チラシ・グラフィック
+        サイン・ロゴ・パンフレット・チラシ・イラスト
       </span>
     </div>
   </div>
 </Reveal>
 
-<div className="columns-1 md:columns-2 lg:columns-3 gap-6">
-  {graphicWorks.map((work, index) => (
-    <Reveal key={work.title} delay={index * 0.03}>
-      <article className="mb-6 break-inside-avoid overflow-hidden">
-        <div className="group relative overflow-hidden bg-[#e8e5df]">
-          <img
-            src={work.img}
-            alt={work.title}
-            loading="lazy"
-            className="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.03]"
-          />
-
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <h3 className="text-white font-['Fraunces'] text-lg">
-              {work.title}
-            </h3>
-
-            <p className="text-white/80 text-xs font-['Inter'] mt-1 leading-relaxed">
-              {work.description}
-            </p>
-          </div>
-        </div>
-      </article>
+{[
+  { label: "サイン・掲示物", items: signWorks },
+  { label: "ロゴデザイン", items: logoWorks },
+  { label: "チラシ・パンフレット・イラスト", items: graphicWorks },
+].map((group) => (
+  <div key={group.label} className="mb-12">
+    <Reveal>
+      <p className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-6">
+        {group.label}
+      </p>
     </Reveal>
-  ))}
-</div>
+    <Gallery items={group.items} />
+  </div>
+))}
     </section>
   )
 }
