@@ -146,7 +146,7 @@ function Nav() {
           whileHover={{ letterSpacing: "0.04em" }}
           transition={{ duration: 0.3 }}
         >
-          KATSUNOSHIN UTSUMI
+          NHATBOX
         </motion.button>
 
         <div className="hidden lg:flex gap-7">
@@ -287,7 +287,7 @@ function Hero() {
         </motion.p>
 
         <h1 className="font-['Fraunces'] text-[clamp(2.8rem,8vw,7.5rem)] font-[300] leading-[0.93] tracking-tight text-[#1a1a2e]">
-          {["KATSUNOSHIN", "UTSUMI", "Portfolio"].map((line, i) => (
+          {["NHATBOX", "Portfolio"].map((line, i, lines) => (
             <span key={i} className="block overflow-hidden">
               <motion.span
                 className="block"
@@ -299,7 +299,7 @@ function Hero() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                {i === 2 ? (
+                {i === lines.length - 1 ? (
                   <em className="italic text-[#c0392b]">{line}</em>
                 ) : (
                   line
@@ -444,8 +444,7 @@ function Profile() {
           </Reveal>
           <Reveal delay={0.14}>
             <p className="text-[#8a8680] font-['Inter'] font-[300] leading-relaxed mb-5 text-sm">
-              福岡出身。西南学院大学 経済学部を卒業後、イラスト・WEBデザインを学び、
-              クリエイティブの道へ。趣味は野球観戦（オリックス）。
+              イラスト・WEBデザインを学び、クリエイティブの道へ。
             </p>
           </Reveal>
           <Reveal delay={0.18}>
@@ -1158,7 +1157,7 @@ function Contact() {
       <Reveal delay={0.1}>
         <div className="mt-24 pt-10 border-t border-[#1a1a2e]/10 text-center text-sm text-[#8a8680] font-['Inter']">
           <span className="font-['Fraunces'] text-base text-[#1a1a2e] mr-3">
-            KATSUNOSHIN UTSUMI
+            NHATBOX
           </span>
           <span>© 2026</span>
         </div>
@@ -1197,7 +1196,7 @@ const faq: { q: string[]; a: string }[] = [
   },
   {
     q: ["プロフィール", "経歴", "自己紹介", "誰", "どんな人"],
-    a: "KATSUNOSHIN UTSUMI（内海勝乃真）です。福岡出身で、現在はフリーランスのデザイナーとして活動しています。これまでに株式会社ホテリエでのWEBデザイナー、不動産会社での広告制作、映像制作、イラスト制作などを経験しています。",
+    a: "NHATBOXです。フリーランスのデザイナーとして活動しています。これまでに株式会社ホテリエでのWEBデザイナー、不動産会社での広告制作、映像制作、イラスト制作などを経験しています。",
   },
 ]
 function getBotReply(input: string): string {
@@ -1215,7 +1214,7 @@ function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "bot",
-      text: "こんにちは！KATSUNOSHIN UTSUMIのポートフォリオへようこそ。\n対応範囲や実績について、お気軽にご質問ください😊\n下のボタンからお気軽にどうぞ！",
+      text: "こんにちは！NHATBOXのポートフォリオへようこそ。\n対応範囲や実績について、お気軽にご質問ください😊\n下のボタンからお気軽にどうぞ！",
     },
   ])
   const [input, setInput] = useState("")
@@ -1289,10 +1288,10 @@ function Chatbot() {
             {/* Header */}
             <div className="bg-[#1a1a2e] px-6 py-5 flex items-center gap-4 shrink-0">
               <div className="w-12 h-12 rounded-full bg-[#c0392b] flex items-center justify-center shrink-0">
-                <span className="font-['Fraunces'] text-[#faf9f7] text-sm font-bold tracking-tight">KU</span>
+                <span className="font-['Fraunces'] text-[#faf9f7] text-sm font-bold tracking-tight">NB</span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-['Fraunces'] text-[#faf9f7] text-base font-[400] truncate">UTSUMI Assistant</p>
+                <p className="font-['Fraunces'] text-[#faf9f7] text-base font-[400] truncate">NHATBOX Assistant</p>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
                   <p className="text-[#faf9f7]/50 text-xs font-['Inter']">オンライン · Q&amp;A</p>
@@ -1328,7 +1327,7 @@ function Chatbot() {
                 >
                   {m.role === "bot" && (
                     <div className="w-7 h-7 rounded-full bg-[#c0392b] flex items-center justify-center shrink-0 mb-0.5">
-                      <span className="font-['Fraunces'] text-[#faf9f7] text-[10px] font-bold">KU</span>
+                      <span className="font-['Fraunces'] text-[#faf9f7] text-[10px] font-bold">NB</span>
                     </div>
                   )}
                   <div
@@ -1346,7 +1345,7 @@ function Chatbot() {
               {typing && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-end gap-2 justify-start">
                   <div className="w-7 h-7 rounded-full bg-[#c0392b] flex items-center justify-center shrink-0">
-                    <span className="font-['Fraunces'] text-[#faf9f7] text-[10px] font-bold">KU</span>
+                    <span className="font-['Fraunces'] text-[#faf9f7] text-[10px] font-bold">NB</span>
                   </div>
                   <div className="bg-white border border-[#1a1a2e]/8 px-5 py-3.5 flex gap-1.5 items-center rounded-tl-sm rounded-tr-2xl rounded-bl-2xl rounded-br-2xl shadow-sm">
                     {[0, 1, 2].map((i) => (
@@ -1424,10 +1423,10 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
           </p>
 
           <h1 className="font-['Fraunces'] text-4xl md:text-5xl font-[300] text-[#1a1a2e]">
-            KATSUNOSHIN
+            NHATBOX
             <br />
             <em className="italic text-[#c0392b]">
-              UTSUMI
+              Portfolio
             </em>
           </h1>
 
@@ -1471,7 +1470,7 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
         </form>
 
         <p className="text-center text-xs text-[#8a8680]/60 mt-10 font-['Inter']">
-          KATSUNOSHIN UTSUMI · 2026
+          NHATBOX · 2026
         </p>
 
       </div>
