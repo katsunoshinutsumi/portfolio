@@ -1,5 +1,7 @@
 import { useRef, useEffect, useState } from "react"
 const PORTFOLIO_PASSWORD = "5811"
+// パスワード画面のオン/オフ。レバテック等に提出する間は一時的に false にしている
+const PASSWORD_GATE_ENABLED = false
 import {
   motion,
   useScroll,
@@ -1408,7 +1410,7 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
     }
   }
 
-  if (authenticated) {
+  if (!PASSWORD_GATE_ENABLED || authenticated) {
     return <>{children}</>
   }
 
