@@ -392,7 +392,7 @@ function Profile() {
               key={i}
               className="font-['Fraunces'] text-2xl font-[300] italic text-[#1a1a2e]/15 shrink-0"
             >
-              WEBデザイン · グラフィックデザイン · イラスト · 映像制作 · UI/UX・AIツール開発
+              WEBデザイン · グラフィックデザイン · イラスト · 映像制作 · UI/UX
               ·&nbsp;
             </span>
           ))}
@@ -494,6 +494,8 @@ const works = [
   {
     title: "Nhat Box",
     category: "ECサイト制作/運営",
+    description:
+      "直送型の通販サイトを個人で企画・運営。仕入れ先の選定と利益計算から、サイト構築、検索・SNSからの集客まで担当。",
     url: "https://nhatbox.space/",
     color: "#1a1a1a",
     img: "/images/works/nhatbox.png",
@@ -553,15 +555,6 @@ const works = [
     url: "https://zonk.jp/",
     color: "#111111",
     img: "/images/works/zonk.jpg",
-  },
-]
-
-const aiTools = [
-  {
-    no: "01",
-    title: "メール・LINE下書きツール",
-    text: "状況や受信文を入力すると、送信できる状態の下書きを生成。ビジネス敬語のルール、未記入箇所のハイライトとコピー防止、日程の自動抽出とGoogleカレンダー登録、祝日判定まで備えた実務向けツール。",
-    tags: ["React", "Next.js", "Claude / Gemini API", "Google SSO"],
   },
 ]
 
@@ -816,6 +809,11 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
             <p className="text-[11px] md:text-xs text-[#8a8680] font-['Inter'] mt-1">
               {work.category}
             </p>
+            {work.description && (
+              <p className="text-[11px] md:text-xs text-[#1a1a2e]/70 font-['Inter'] font-[300] leading-relaxed mt-2">
+                {work.description}
+              </p>
+            )}
           </div>
           <motion.span
             animate={{
@@ -870,44 +868,6 @@ function Works() {
               YouTube で見る
             </a>
           </p>
-        </div>
-      </Reveal>
-      {/* AI tools */}
-      <Reveal delay={0.1}>
-        <div className="mt-16 border-t border-[#1a1a2e]/8 pt-10">
-          <p className="text-xs font-['Inter'] tracking-widest text-[#8a8680] uppercase mb-6">
-            AIツール開発
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {aiTools.map((t) => (
-              <article
-                key={t.no}
-                className="border border-[#1a1a2e]/12 p-7"
-              >
-                <div className="flex items-baseline gap-3 mb-3">
-                  <span className="font-['Fraunces'] text-sm text-[#c0392b]">
-                    {t.no}
-                  </span>
-                  <h3 className="font-['Fraunces'] text-xl font-[300] text-[#1a1a2e]">
-                    {t.title}
-                  </h3>
-                </div>
-                <p className="text-sm text-[#8a8680] font-['Inter'] font-[300] leading-relaxed mb-5">
-                  {t.text}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {t.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs font-['Inter'] text-[#1a1a2e]/70 border border-[#1a1a2e]/15 px-3 py-1 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
         </div>
       </Reveal>
       {/* Graphic / Print Works */}
@@ -1180,7 +1140,7 @@ const faq: { q: string[]; a: string }[] = [
   },
   {
     q: ["実績", "制作", "作品", "ポートフォリオ", "事例"],
-    a: "ホテル・飲食店・不動産・コワーキングスペースなどのWebサイト制作・運用、自社ECサイト「Nhat Box」の制作・運営、メール下書きなどのAIツール開発、マンションパンフレットや店舗チラシ、イラストなどの実績があります。詳しくはページ内の「制作実績」をご覧ください。",
+    a: "ホテル・飲食店・不動産・コワーキングスペースなどのWebサイト制作・運用、自社ECサイト「Nhat Box」の制作・運営、マンションパンフレットや店舗チラシ、イラストなどの実績があります。詳しくはページ内の「制作実績」をご覧ください。",
   },
   {
     q: ["wordpress", "ワードプレス", "更新", "運用", "保守"],
