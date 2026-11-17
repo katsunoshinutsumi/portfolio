@@ -498,7 +498,7 @@ const works = [
       "直送型の通販サイトを個人で企画・運営。仕入れ先の選定と利益計算から、サイト構築、検索・SNSからの集客まで担当。",
     url: "https://nhatbox.space/",
     color: "#1a1a1a",
-    img: "/images/works/nhatbox.png",
+    img: "/images/works/nhatbox.jpg",
   },
   {
     title: "ホテリエ",
